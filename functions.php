@@ -3,5 +3,5 @@
 
 function partial($partial)
 {
-    include './partials/'.$partial.'.php';
+    include __DIR__.'/partials/'.$partial.'.php';
 }

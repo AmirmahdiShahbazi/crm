@@ -71,8 +71,8 @@
                       </g>
                     </svg><span>املاک</span></a>
                   <ul class="sidebar-submenu">
-                    <li><a href="product.html">لیست املاک</a></li>
-                    <li><a href="product.html">ایجاد ملک جدید</a></li>
+                    <li><a href="../properties/index.php">لیست املاک</a></li>
+                    <li><a href="../properties/create.php">ایجاد ملک جدید</a></li>
 
                     
                   </ul>
@@ -901,3 +901,4 @@
         </div>
       </div>
       <!-- Page Sidebar Ends-->
+      <div class="page-body">

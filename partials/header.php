@@ -1,4 +1,4 @@
-<?php require './partials/head.php';?>
+<?php require __DIR__.'/head.php';?>
   <!-- Page Header Start-->
     <div class="page-header">
       <div class="header-wrapper row m-0">
@@ -346,3 +346,4 @@
       </div>
     </div>
     <!-- Page Header Ends -->
+    <div class="page-body-wrapper">
