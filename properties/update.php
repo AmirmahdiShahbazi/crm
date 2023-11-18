@@ -6,7 +6,6 @@ if($_SERVER['REQUEST_METHOD'] != 'POST'){
     die();
 }
 
-
 $queryBuilder->update('properties')
 ->set('property_type', '?')
 ->set('transaction_type', '?')
@@ -67,5 +66,6 @@ $queryBuilder->setParameter(0, $_POST['property_type'])
 ->setParameter(27, $_POST['wall'])
 ->setParameter(28, $_GET['id']);
 $queryBuilder->execute();
+$_SESSION['success'] = 'ملک با موفقیت به روز رسانی شد';
 header('Location: /properties');
 die();

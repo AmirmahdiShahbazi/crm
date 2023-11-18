@@ -70,5 +70,6 @@ $queryBuilder
     ->setParameter(26, $_POST['bathroom'])
     ->setParameter(27, $_POST['wall']);;
 $queryBuilder->execute();
+$_SESSION['success'] = 'ملک با موفقیت ساخته شد';
 header('Location: /properties');
 die();
