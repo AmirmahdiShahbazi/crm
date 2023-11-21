@@ -59,11 +59,12 @@
                           <path fill-rule="evenodd" clip-rule="evenodd" d="M2.45215 11.9688C2.45215 5.13075 4.8331 2.85205 11.976 2.85205C19.1188 2.85205 21.4998 5.13075 21.4998 11.9688C21.4998 18.8059 19.1188 21.0856 11.976 21.0856C4.8331 21.0856 2.45215 18.8059 2.45215 11.9688Z" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         </g>
                       </g>
-                    </svg><span>ایمیل</span></a>
+                    </svg><span>تیکت</span></a>
                   <ul class="sidebar-submenu">
-                    <li><a href="email_inbox.html">صندوق دریافت</a></li>
-                    <li><a href="email_read.html">خواندن ایمیل</a></li>
-                    <li><a href="email_compose.html">ارسال ایمیل</a></li>
+                    <li><a href="../tickets/sent.php">تیکت های ارسال شده</a></li>
+                    <li><a href="../tickets/send.php">ارسال تیکت</a></li>
+                    <li><a href="../tickets/recived.php">تیکت های دریافت شده</a></li>
+
                   </ul>
                 </li>
 
@@ -81,9 +82,8 @@
                       </g>
                     </svg><span>کاربران</span></a>
                   <ul class="sidebar-submenu">
-                    <li><a href="user-profile.html">پروفایل کاربران</a></li>
-                    <li><a href="edit-profile.html">ویرایش کاربران</a></li>
-                    <li><a href="user-cards.html">کارت های کاربران</a></li>
+                    <li><a href="../users/index.php">لیست کاربران</a></li>
+                    <li><a href="../users/create.php">ایجاد کاربر جدید</a></li>
                   </ul>
                 </li>
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="bookmark.html">
