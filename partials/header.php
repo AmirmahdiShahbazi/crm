@@ -327,7 +327,7 @@
                 <li><a href="email-application.html"><i data-feather="mail"></i><span>صندوق دریافت</span></a></li>
                 <li><a href="kanban.html"><i data-feather="file-text"></i><span>میز کار</span></a></li>
                 <li><a href="edit-profile.html"><i data-feather="settings"></i><span>تنظیمات</span></a></li>
-                <li><a href="login.html"><i data-feather="log-in"> </i><span>ورود</span></a></li>
+                <li><a href="../views/auth/login.php"><i data-feather="log-in"> </i><span>ورود</span></a></li>
               </ul>
             </li>
           </ul>
