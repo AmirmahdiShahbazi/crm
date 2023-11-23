@@ -1,4 +1,6 @@
 <?php
+require '../../csrf.php';
+
 // Start session
 session_start();
 ?>

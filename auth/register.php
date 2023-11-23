@@ -1,22 +1,8 @@
 <?php
 // register.php
 require '../bootstrap.php';
+require '../csrf.php';
 
-// Function to generate CSRF token
-function generateCsrfToken()
-{
-    if (!isset($_SESSION['csrf_token'])) {
-        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-    }
-
-    return $_SESSION['csrf_token'];
-}
-
-// Function to validate CSRF token
-function validateCsrfToken($token)
-{
-    return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token);
-}
 
 // Start session
 session_start();
@@ -28,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (!validateCsrfToken($csrfToken)) {
       // CSRF token is invalid, handle accordingly (e.g., show an error message)
       $_SESSION['failed'] = 'CSRF token validation failed. Please try again.';
-      header('Location: register_form.php');
+      header('Location: ../views/auth/sign-up.php');
       exit;
   }
 

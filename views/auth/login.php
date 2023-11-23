@@ -1,6 +1,9 @@
 <?php
+require '../../csrf.php';
+
 // Start session
 session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
