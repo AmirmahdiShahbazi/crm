@@ -1,10 +1,9 @@
 <?php partial('header'); ?>
 
 <?php partial('sidebar'); ?>
-<?php $expert = $queryBuilder
-    ->select('*')
-    ->from('experts')
-    ->where('id = ' .  $_GET['id'])->fetchAssociative(); ?>
+<?php $sql = 'SELECT * FROM `experts` WHERE id = '.$_GET['id'];
+    $stmt = $conn->prepare($sql);
+    $expert = $stmt->execute()->fetchAssociative(); ?>
 <div class="container-fluid">
     <div class="page-title">
         <div class="row">

@@ -1,7 +1,10 @@
 <?php partial('header'); ?>
 
 <?php partial('sidebar'); ?>
-<?php $properties = $queryBuilder->select('*')->from('properties')->fetchAllAssociative() ?>
+<?php $sql = 'SELECT * FROM `properties`';
+    $stmt = $conn->prepare($sql);
+    $properties = $stmt->execute()->fetchAllAssociative();
+?>
 <div class="container-fluid">
     <div class="page-title">
         <div class="row">
@@ -21,11 +24,11 @@
         </div>
     </div>
 </div>
-<?php if(isset($_SESSION['success'])):?>
-    <div class="alert alert-success"><?php echo $_SESSION['success']?></div>
-    <?php unset($_SESSION['success'])?>
+<?php if (isset($_SESSION['success'])) : ?>
+    <div class="alert alert-success"><?php echo $_SESSION['success'] ?></div>
+    <?php unset($_SESSION['success']) ?>
 
-<?php endif;?>    
+<?php endif; ?>
 <!-- Container-fluid starts -->
 <div class="container-fluid">
     <div class="col-sm-12">
@@ -69,7 +72,7 @@
                                     <td>
                                         <a href="../../properties/show.php?id=<?php echo $property['id']; ?>" class="fa fa-eye text-secondray" title="مشاهده"></a>
                                         <a href="../../properties/update.php?id=<?php echo $property['id']; ?>" class="fa fa-edit text-primary" title="ویرایش"></a>
-                                        <a style="cursor:pointer;" class="fa fa-trash text-danger"  data-bs-toggle="modal" data-bs-target="#deleteModal"></a>
+                                        <a style="cursor:pointer;" class="fa fa-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"></a>
                                         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">

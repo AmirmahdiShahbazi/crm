@@ -52235,17 +52235,21 @@ html[dir="rtl"] .ecommerce-dashboard-section .support-sec.profile-greeting .supp
 
 /* Create a custom checkbox */
 .checkmark {
-    padding : 8px 10px;
+    padding: 8px 10px;
     position: relative;
     display: inline;
-    height: 30px; /* Increase the height */
-    width: 50px; /* Increase the width */
+    height: 30px;
+    /* Increase the height */
+    width: 50px;
+    /* Increase the width */
     background-color: #eee;
     border-radius: 4px;
     cursor: pointer;
-    line-height: 50px; /* Adjust the line height */
+    line-height: 50px;
+    /* Adjust the line height */
     text-align: center;
-    font-size: 10px; /* Adjust the font size */
+    font-size: 10px;
+    /* Adjust the font size */
 
 }
 
@@ -52276,8 +52280,10 @@ html[dir="rtl"] .ecommerce-dashboard-section .support-sec.profile-greeting .supp
 .custom-checkbox .checkmark:after {
     /* left: 9px;
     top: 5px; */
-    width: 10px; /* Increase the width */
-    height: 20px; /* Increase the height */
+    width: 10px;
+    /* Increase the width */
+    height: 20px;
+    /* Increase the height */
     border: solid white;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
@@ -52285,5 +52291,8 @@ html[dir="rtl"] .ecommerce-dashboard-section .support-sec.profile-greeting .supp
     transform: rotate(45deg);
 }
 
+.hidden {
+    display: none;
+}
 
 /*# sourceMappingURL=style.css.map */

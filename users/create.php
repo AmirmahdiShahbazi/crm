@@ -15,9 +15,9 @@ if (
 }
 
 // Select count of records matching phone number
-$queryBuilder->select('count(u.id)')
-    ->from('users', 'u')
-    ->where('u.phone_number = :phone_number')
+$queryBuilder->select('count(e.id)')
+    ->from('users', 'e')
+    ->where('e.phone_number = :phone_number')
     ->setParameter('phone_number', $_POST['phone_number']);
 
 $stmt = $queryBuilder->execute();
@@ -29,6 +29,7 @@ if ($result['count(e.id)'] > 0) {
     header('Location: /users/create.php');
     die();
 }
+
 
 if (!preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8}$/", $_POST['password'])) {
     $_SESSION['failed'] = 'رمز عبور باید حدافل هشت رقم و شامل ارقام و حروف باشد';

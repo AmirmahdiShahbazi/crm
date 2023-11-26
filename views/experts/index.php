@@ -1,7 +1,9 @@
 <?php partial('header'); ?>
 
 <?php partial('sidebar'); ?>
-<?php $experts = $queryBuilder->select('*')->from('experts')->fetchAllAssociative() ?>
+<?php $sql = 'SELECT * FROM `experts`';
+    $stmt = $conn->prepare($sql);
+    $experts = $stmt->execute()->fetchAllAssociative(); ?>
 <div class="container-fluid">
     <div class="page-title">
         <div class="row">

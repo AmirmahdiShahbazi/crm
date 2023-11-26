@@ -2,10 +2,9 @@
 
 <?php partial('sidebar'); ?>
 <?php
-$experts = $queryBuilder
-    ->select('*')
-    ->distinct()
-    ->from('experts')->fetchAllAssociative();
+$sql = 'SELECT * FROM `experts`';
+$stmt = $conn->prepare($sql);
+$experts = $stmt->execute()->fetchAllAssociative(); 
 ?>
 <div class="container-fluid">
     <div class="page-title">
@@ -50,7 +49,7 @@ $experts = $queryBuilder
                                                         <option value="">ارسال به...</option>
                                                         <?php foreach ($experts as $expert) : ?>
                                                             <option value="<?php echo $expert['id'] ?>"><?php echo $expert['name'] ?></option>
-                                                        <?php endforeach; ?>
+                                                            <?php endforeach; ?>
                                                     </select>
                                                 </div>
                                                 <div class="form-group">

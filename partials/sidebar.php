@@ -51,6 +51,7 @@
 
                   </ul>
                 </li>
+
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g>
@@ -63,7 +64,23 @@
                   <ul class="sidebar-submenu">
                     <li><a href="../tickets/sent.php">تیکت های ارسال شده</a></li>
                     <li><a href="../tickets/send.php">ارسال تیکت</a></li>
-                    <li><a href="../tickets/recived.php">تیکت های دریافت شده</a></li>
+                    <li><a href="../tickets/received.php">تیکت های دریافت شده</a></li>
+
+                  </ul>
+                </li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g>
+                        <g>
+                          <path d="M15.7499 9.47167V6.43967C15.7549 4.35167 14.0659 2.65467 11.9779 2.64967C9.88887 2.64567 8.19287 4.33467 8.18787 6.42267V9.47167" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M2.94995 14.2074C2.94995 8.91344 5.20495 7.14844 11.969 7.14844C18.733 7.14844 20.988 8.91344 20.988 14.2074C20.988 19.5004 18.733 21.2654 11.969 21.2654C5.20495 21.2654 2.94995 19.5004 2.94995 14.2074Z" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                      </g>
+                    </svg><span>پرونده ها</span></a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="../visits/index.php">لیست پرونده ها</a></li>
+                    <li><a href="../visits/create.php">ایجاد پرونده جدید</a></li>
+
 
                   </ul>
                 </li>

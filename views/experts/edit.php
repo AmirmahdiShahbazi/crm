@@ -1,10 +1,9 @@
 <?php partial('header'); ?>
 
 <?php partial('sidebar'); ?>
-<?php $expert = $queryBuilder
-    ->select('*')
-    ->from('experts')
-    ->where('id = ' .  $_GET['id'])->fetchAssociative(); ?>
+<?php $sql = 'SELECT * FROM `experts` WHERE id = ' . $_GET['id'];
+$stmt = $conn->prepare($sql);
+$expert = $stmt->execute()->fetchAssociative(); ?>
 <div class="container-fluid">
     <div class="page-title">
         <div class="row">
@@ -24,46 +23,47 @@
         </div>
     </div>
 </div>
-<?php if(isset($_SESSION['failed'])):?>
-<div class="alert alert-danger">
-    <?php echo $_SESSION['failed']; unset($_SESSION['failed']);?>
+<?php if (isset($_SESSION['failed'])) : ?>
+    <div class="alert alert-danger">
+        <?php echo $_SESSION['failed'];
+        unset($_SESSION['failed']); ?>
 
-</div>
-<?php endif;?>
+    </div>
+<?php endif; ?>
 <!-- Container-fluid starts -->
 <div class="container-fluid">
 
     <div class="card">
 
         <div class="card-body">
-            <form method="post" action="../../experts/update.php?id=<?php echo $_GET['id']?>" class="theme-form">
+            <form method="post" action="../../experts/update.php?id=<?php echo $_GET['id'] ?>" class="theme-form">
 
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label" for="inputPassword3">نام کارشناس</label>
                     <div class="col-sm-9">
-                        <input required class="form-control" value="<?php echo $expert['name']?>" id="inputnumber" name="name" type="text" placeholder="نام کارشناس">
+                        <input required class="form-control" value="<?php echo $expert['name'] ?>" id="inputnumber" name="name" type="text" placeholder="نام کارشناس">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label" for="inputPassword3">تلفن همراه</label>
                     <div class="col-sm-9">
-                        <input required class="form-control" id="inputnumber" value="<?php echo $expert['phone_number']?>" name="phone_number" type="text" placeholder="تلفن همراه">
+                        <input required class="form-control" id="inputnumber" value="<?php echo $expert['phone_number'] ?>" name="phone_number" type="text" placeholder="تلفن همراه">
                     </div>
-                    
+
                 </div>
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label" for="inputPassword3">رمز عبور</label>
                     <div class="col-sm-9">
-                        <input  class="form-control" id="inputnumber" name="password" type="password" placeholder="رمز عبور">
+                        <input class="form-control" id="inputnumber" name="password" type="password" placeholder="رمز عبور">
                     </div>
-                    
+
                 </div>
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label" for="inputPassword3">تکرار رمز عبور</label>
                     <div class="col-sm-9">
-                        <input  class="form-control" id="inputnumber" name="confirmation_password" type="password" placeholder="تکرار رمز عبور">
+                        <input class="form-control" id="inputnumber" name="confirmation_password" type="password" placeholder="تکرار رمز عبور">
                     </div>
-                    
+
                 </div>
 
 
@@ -75,14 +75,14 @@
 
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input required type="radio" <?php echo $property['is_admin']?'checked':'' ?> name="is_admin" value="1">
+                            <input disabled required type="radio" <?php echo $property['is_admin']?'checked':'' ?> name="is_admin" value="1">
                             <span class="checkmark">بله</span>
                         </label>
 
                     </div>
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input required type="radio" <?php echo !$property['is_admin']?'checked':'' ?> name="is_admin" value="0">
+                            <input disabled required type="radio" <?php echo !$property['is_admin']?'checked':'' ?> name="is_admin" value="0">
                             <span class="checkmark">خیر</span>
                         </label>
 

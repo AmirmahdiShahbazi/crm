@@ -1,10 +1,9 @@
 <?php partial('header'); ?>
 
 <?php partial('sidebar'); ?>
-<?php $user = $queryBuilder
-    ->select('*')
-    ->from('users')
-    ->where('id = ' .  $_GET['id'])->fetchAssociative(); ?>
+<?php $sql = 'SELECT * FROM `users` where id = '.$_GET['id'].';';
+    $stmt = $conn->prepare($sql);
+    $user = $stmt->execute()->fetchAssociative(); ?>
 <div class="container-fluid">
     <div class="page-title">
         <div class="row">

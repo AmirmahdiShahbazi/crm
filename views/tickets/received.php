@@ -1,14 +1,16 @@
 <?php partial('header'); ?>
 
 <?php partial('sidebar'); ?>
-<?php $sql = 'SELECT * FROM `users`';
-    $stmt = $conn->prepare($sql);
-    $users = $stmt->execute()->fetchAllAssociative(); ?>
+<?php
+
+
+
+$receiveds = $queryBuilder->select('*')->from('tickets')->where('receiver_id = ?')->setParameter('0', 4)->execute()->fetchAllAssociative() ?>
 <div class="container-fluid">
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-sm-6">
-                <h3>لیست کاربران</h3>
+                <h3>تیکت های دریافت شده</h3>
             </div>
             <div class="col-12 col-sm-6">
                 <ol class="breadcrumb">
@@ -16,17 +18,17 @@
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
                             </svg></a></li>
-                    <li class="breadcrumb-item"> کاربران</li>
-                    <li class="breadcrumb-item active"> لیست کاربران</li>
+                    <li class="breadcrumb-item"> تیکت ها</li>
+                    <li class="breadcrumb-item active">تیکت های دریافت شده</li>
                 </ol>
             </div>
         </div>
     </div>
 </div>
-<?php if(isset($_SESSION['success'])):?>
-    <div class="alert alert-success"><?php echo $_SESSION['success']?></div>
-    <?php unset($_SESSION['success'])?>
-<?php endif;?>    
+<?php if (isset($_SESSION['success'])) : ?>
+    <div class="alert alert-success"><?php echo $_SESSION['success'] ?></div>
+    <?php unset($_SESSION['success']) ?>
+<?php endif; ?>
 <!-- Container-fluid starts -->
 <div class="container-fluid">
     <div class="col-sm-12">
@@ -55,22 +57,36 @@
                     <table class="display" id="datatable-range">
                         <thead>
                             <tr>
-                                <th>نام</th>
-                                <th>شماره تلفن</th>
-                                <th>نوع</th>
+                                <th>فرستنده</th>
+                                <th>موضوع</th>
+                                <th>خوانده شده</th>
                                 <th>عملیات</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($users as $user) : ?>
+
+
+                            <?php foreach ($receiveds as $received) : ?>
+
+
                                 <tr>
-                                    <td><?php echo $user['name'] ?></td>
-                                    <td><?php echo $user['phone_number'] ?></td>
-                                    <td><?php echo $user['type'] ?></td>
+
+                                    <td><?php
+
+                                        echo $queryBuilder->select('name')
+                                            ->from('experts')
+                                            ->where('experts.id = ?') // Specify the table name before the column name
+                                            ->setParameter('0', $received['sender_id'])
+                                            ->execute()
+                                            ->fetchOne();
+
+                                        ?>
+                                    </td>
+                                    <td><?php echo $received['title'] ?></td>
+                                    <td><i class="fa <?php echo $received['seen'] ? 'fa-check text-success' : 'fa-times text-danger' ?>"></i></td>
                                     <td>
-                                        <a href="../../users/show.php?id=<?php echo $user['id']; ?>" class="fa fa-eye text-secondray" title="مشاهده"></a>
-                                        <a href="../../users/update.php?id=<?php echo $user['id']; ?>" class="fa fa-edit text-primary" title="ویرایش"></a>
-                                        <a style="cursor:pointer;" class="fa fa-trash text-danger"  data-bs-toggle="modal" data-bs-target="#deleteModal"></a>
+                                        <a href="../../tickets/show-received.php?id=<?php echo $received['id']; ?>" class="fa fa-eye text-secondray" title="مشاهده"></a>
+                                        <a style="cursor:pointer;" class="fa fa-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"></a>
                                         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
@@ -82,7 +98,7 @@
                                                         <p>آیا از حذف این ملک اطمینان دارید؟</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <a href="../../users/delete.php?id=<?php echo $user['id']; ?>" class="btn btn-danger">حذف</a>
+                                                        <a href="../../users/delete.php?id=<?php echo $property['id']; ?>" class="btn btn-danger">حذف</a>
                                                     </div>
                                                 </div>
                                             </div>
