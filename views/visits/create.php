@@ -1,9 +1,5 @@
 <?php partial('header'); ?>
-<style>
-    .hidden {
-        display: none;
-    }
-</style>
+
 <?php $sql = 'SELECT * FROM `properties`';
 $stmt = $conn->prepare($sql);
 $properties = $stmt->execute()->fetchAllAssociative();
@@ -14,9 +10,9 @@ $stmt = $conn->prepare($sql);
 $clients = $stmt->execute()->fetchAllAssociative();
 
 
-$sql = 'SELECT * FROM `users` WHERE type = \'فروشنده\' or type = \'اجاره دهنده\'';
+$sql = 'SELECT * FROM `experts` ';
 $stmt = $conn->prepare($sql);
-$owners = $stmt->execute()->fetchAllAssociative();
+$experts = $stmt->execute()->fetchAllAssociative();
 ?>
 <?php partial('sidebar'); ?>
 
@@ -52,12 +48,18 @@ $owners = $stmt->execute()->fetchAllAssociative();
     <div class="card">
 
         <div class="card-body">
-            <form method="post" enctype="multipart/form-data" action="../../users/create.php" class="theme-form">
+            <form method="post" enctype="multipart/form-data" action="./../../visits/create.php" class="theme-form">
+                <div class="mb-3 row" id="reasonInput">
+                    <label class="col-sm-3 col-form-label " for="reasonInput">دسته بندی</label>
+                    <div class="col-sm-9">
+                        <input s class="form-control" name="category" type="text" required placeholder="دسته بندی ">
+                    </div>
 
+                </div>
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label" for="inputPassword3">ملک</label>
                     <div class="col-sm-9">
-                        <select name="property" class="js-example-basic-single form-control" name="state">
+                        <select name="property" class="js-example-basic-single form-control">
                             <?php foreach ($properties as $property) : ?>
                                 <option value="<?php echo $property['id'] ?>"><?php echo $property['address'] ?></option>
                             <?php endforeach; ?>
@@ -67,7 +69,7 @@ $owners = $stmt->execute()->fetchAllAssociative();
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label" for="inputPassword3">مشتری</label>
                     <div class="col-sm-9">
-                        <select name="client" class="js-example-basic-single form-control" name="state">
+                        <select name="client" class="js-example-basic-single form-control">
                             <?php foreach ($clients as $client) : ?>
                                 <option value="<?php echo $client['id'] ?>"><?php echo $client['name'] ?></option>
                             <?php endforeach; ?>
@@ -75,11 +77,11 @@ $owners = $stmt->execute()->fetchAllAssociative();
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label" for="inputPassword3">مالک</label>
+                    <label class="col-sm-3 col-form-label" for="inputPassword3">کارشناس</label>
                     <div class="col-sm-9">
-                        <select name="owner" class="js-example-basic-single form-control" name="state">
-                            <?php foreach ($owners as $owner) : ?>
-                                <option value="<?php echo $owner['id'] ?>"><?php echo $owner['name'] ?></option>
+                        <select name="expert" class="js-example-basic-single form-control" >
+                            <?php foreach ($experts as $expert) : ?>
+                                <option value="<?php echo $expert['id'] ?>"><?php echo $expert['name'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -87,23 +89,22 @@ $owners = $stmt->execute()->fetchAllAssociative();
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label" for="inputPassword3">فایل</label>
                     <div class="col-sm-9">
-                        <input required class="form-control" id="inputnumber" multiple name="files[]" type="file" placeholder="تلفن همراه">
+                        <input required class="form-control" id="inputnumber" multiple name="files[]" type="file" required placeholder="تلفن همراه">
                     </div>
 
                 </div>
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label" for="inputPassword3">توضیحات</label>
                     <div class="col-sm-9">
-                        <textarea required class="form-control" id="inputnumber" name="description" type="password" placeholder="توضیحات"></textarea>
+                        <textarea required class="form-control" id="inputnumber" name="description" type="password" required placeholder="توضیحات"></textarea>
                     </div>
 
                 </div>
                 <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label" for="inputPassword3">زمان بازدید</label>
+                    <label class="col-sm-3 col-form-label" for="inputPassword3">تاریخ بازدید</label>
                     <div class="col-sm-9">
-                        <input required class="form-control" id="inputnumber" name="visit_time" type="date" placeholder="تکرار رمز عبور">
+                        <input class="datepicker2 form-control digits" name="visit_time" type="text">
                     </div>
-
                 </div>
 
 
@@ -112,23 +113,23 @@ $owners = $stmt->execute()->fetchAllAssociative();
 
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input type="radio" checked  onchange="toggleReasonInput()" class="toggle-reason" name="result" value="1">
+                            <input type="radio" checked onchange="toggleReasonInput()" class="toggle-reason" name="result" value="1">
                             <span class="checkmark">موفق</span>
                         </label>
 
                     </div>
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input id="inputnumber"  onchange="toggleReasonInput()" class="toggle-reason" type="radio" name="result" value="0">
+                            <input id="inputnumber" onchange="toggleReasonInput()" class="toggle-reason" type="radio" name="result" value="0">
                             <span class="checkmark">ناموفق</span>
                         </label>
 
                     </div>
                 </div>
-                <div class="mb-3 row hidden" id="reasonInput">
+                <div class="mb-3 row" id="reasonInput">
                     <label class="col-sm-3 col-form-label " for="reasonInput">دلیل</label>
                     <div class="col-sm-9">
-                        <input s class="form-control"  name="reason" type="text" placeholder="دلیل ">
+                        <input s class="form-control" name="reason" type="text" required placeholder="دلیل ">
                     </div>
 
                 </div>
@@ -144,17 +145,6 @@ $owners = $stmt->execute()->fetchAllAssociative();
     </div>
     <!-- Container-fluid Ends-->
 </div>
-<script>
-    function toggleReasonInput() {
-        var reasonInput = document.getElementById('reasonInput');
-        var radioFailed = document.querySelector('input[name="result"][value="0"]:checked');
 
-        if (radioFailed) {
-            reasonInput.classList.remove('hidden');
-        } else {
-            reasonInput.classList.add('hidden');
-        }
-    }
-</script>
 
 <?php partial('footer') ?>

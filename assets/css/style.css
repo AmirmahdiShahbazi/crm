@@ -52294,5 +52294,7 @@ html[dir="rtl"] .ecommerce-dashboard-section .support-sec.profile-greeting .supp
 .hidden {
     display: none;
 }
-
+.custom-checkbox{
+    width:120px;
+}
 /*# sourceMappingURL=style.css.map */

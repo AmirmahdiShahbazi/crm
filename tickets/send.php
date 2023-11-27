@@ -26,28 +26,28 @@ $queryBuilder
     ->setParameter('receiver_id', $_POST['receiver'])
     ->setParameter('sender_id', 4);
 
-if (!empty($_FILES['files']) && isset($_POST['files'])) {
-    $files = $_FILES['files'];
-    $fileCount = count($files['name']);
-    $destinationDir = __DIR__ . '/../files/tickets/' . $_POST['receiver'] . '/';
+    if (!empty($_FILES['files'])) {
+        $files = $_FILES['files'];
+        $fileCount = count($files['name']);
+        $destinationDir = 'tickets/' . 4 . '/';
     
-    // Create the destination directory if it doesn't exist
-    if (!is_dir($destinationDir)) {
-        mkdir($destinationDir, 0777, true);
-    }
+        // Create the destination directory if it doesn't exist
+        if (!is_dir($destinationDir)) {
+            mkdir('./../files/'.$destinationDir, 0777, true);
+        }
     
-    $uploadedFiles = [];
-    for ($i = 0; $i < $fileCount; $i++) {
-        $fileName = $files['name'][$i];
-        $fileTmp = $files['tmp_name'][$i];
-        $fileSize = $files['size'][$i];
-        $fileError = $files['error'][$i];
-        $extension = pathinfo($fileName, PATHINFO_EXTENSION);
-        $destination = $destinationDir . md5($fileName) . '.' . $extension;
-        $uploadedFiles[] = $destination;
-        move_uploaded_file($fileTmp, $destination);
-        // Move the uploaded file to the destination directory
-    }
+        $uploadedFiles = [];
+        for ($i = 0; $i < $fileCount; $i++) {
+            $fileName = $files['name'][$i];
+            $fileTmp = $files['tmp_name'][$i];
+            $fileSize = $files['size'][$i];
+            $fileError = $files['error'][$i];
+            $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+            $destination = $destinationDir . md5($fileName) . '.' . $extension;
+            $uploadedFiles[] = $destination;
+            move_uploaded_file($fileTmp, __DIR__ . '/../files/'.$destination);
+            // Move the uploaded file to the destination directory
+        }
     
     $queryBuilder->setParameter('files', json_encode($uploadedFiles));
 } else {

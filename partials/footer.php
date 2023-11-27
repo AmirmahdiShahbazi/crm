@@ -49,11 +49,119 @@
 <script src="../assets/js/dropzone/dropzone.js"></script>
 <script src="../assets/js/dropzone/dropzone-script.js"></script>
 <script src="../assets/js/email-app.js"></script>
+<script src="../assets/js/persiandatepicker/persian-date-0.1.8.min.js"></script>
+<script src="../assets/js/persiandatepicker/persian-datepicker-0.4.5.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+
+  });
+</script>
+<script>
+  $('.datepicker2').persianDatepicker({
+    'format': 'YYYY/MM/DD',
+    timePicker: {
+      enabled: true
+    },
+  });
+
+  $('.datepicker3').persianDatepicker({
+    'format': 'YYYY/MM/DD',
+    initialValue: false
+  });
+
+  $('.datepicker4').persianDatepicker({
+    'format': 'YYYY/MM/DD',
+    initialValueType: 'persian'
+  });
+
+  $('.datepicker5').persianDatepicker({
+    format: 'LLLL',
+    timePicker: {
+      enabled: true
+    },
+  });
+
+  $('.datepicker6').persianDatepicker({
+    format: 'YYYY/MM/DD',
+    viewMode: 'month',
+  });
+
+  $('.datepicker7').persianDatepicker({
+    format: 'YYYY/MM/DD',
+    minDate: new persianDate()
+  });
+
+  $('.datepicker8').persianDatepicker({
+    format: 'YYYY/MM/DD',
+    maxDate: new persianDate()
+  });
+
+  $('.datepicker9').persianDatepicker({
+    format: 'YYYY/MM/DD',
+    autoClose: true
+  });
+
+  $("#tarikh").persianDatepicker({
+    altField: "#tarikhAlt",
+    altFormat: "X",
+    format: "D MMMM YYYY",
+    timePicker: {
+      enabled: true
+    },
+    observer: true
+  });
+
+  $(".taghvim").persianDatepicker({
+    inline: true,
+    altFormat: 'LLLL'
+  });
+
+  jQuery(document).ready(function() {
+    jQuery("#taghvim").persianDatepicker({
+      altFormat: "X",
+      format: "YYYY/MM/DD",
+      observer: true
+    });
+  });
+</script>
 
 <script>
-$(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});
+  var to, from;
+  to = $(".datepicker11").persianDatepicker({
+    altField: '.datepicker11-alt',
+    altFormat: 'LLLL',
+    initialValue: false,
+    onSelect: function(unix) {
+      to.touched = true;
+      if (from && from.options && from.options.maxDate != unix) {
+        var cachedValue = from.getState().selected.unixDate;
+        from.options = {
+          maxDate: unix
+        };
+        if (from.touched) {
+          from.setDate(cachedValue);
+        }
+      }
+    }
+  });
+  from = $(".datepicker10").persianDatepicker({
+    altField: '.datepicker10-alt',
+    altFormat: 'LLLL',
+    initialValue: false,
+    onSelect: function(unix) {
+      from.touched = true;
+      if (to && to.options && to.options.minDate != unix) {
+        var cachedValue = to.getState().selected.unixDate;
+        to.options = {
+          minDate: unix
+        };
+        if (to.touched) {
+          to.setDate(cachedValue);
+        }
+      }
+    }
+  });
 </script>
 </body>
 

@@ -91,28 +91,28 @@ $queryBuilder
     ->setParameter(28, $_POST['shop_size'] ?? 'none')
     ->setParameter(29, $_POST['wall'] ?? 'none');
 
-if (!empty($_FILES['files'])) {
-    $files = $_FILES['files'];
-    $fileCount = count($files['name']);
-    $destinationDir = 'properties/' . 4 . '/';
-
-    // Create the destination directory if it doesn't exist
-    if (!is_dir($destinationDir)) {
-        mkdir($destinationDir, 0777, true);
-    }
-
-    $uploadedFiles = [];
-    for ($i = 0; $i < $fileCount; $i++) {
-        $fileName = $files['name'][$i];
-        $fileTmp = $files['tmp_name'][$i];
-        $fileSize = $files['size'][$i];
-        $fileError = $files['error'][$i];
-        $extension = pathinfo($fileName, PATHINFO_EXTENSION);
-        $destination = $destinationDir . md5($fileName) . '.' . $extension;
-        $uploadedFiles[] = $destination;
-        move_uploaded_file($fileTmp, __DIR__ . '../files/' . $destination);
-        // Move the uploaded file to the destination directory
-    }
+    if (!empty($_FILES['files'])) {
+        $files = $_FILES['files'];
+        $fileCount = count($files['name']);
+        $destinationDir = 'properties/' . 4 . '/';
+    
+        // Create the destination directory if it doesn't exist
+        if (!is_dir($destinationDir)) {
+            mkdir('./../files/'.$destinationDir, 0777, true);
+        }
+    
+        $uploadedFiles = [];
+        for ($i = 0; $i < $fileCount; $i++) {
+            $fileName = $files['name'][$i];
+            $fileTmp = $files['tmp_name'][$i];
+            $fileSize = $files['size'][$i];
+            $fileError = $files['error'][$i];
+            $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+            $destination = $destinationDir . md5($fileName) . '.' . $extension;
+            $uploadedFiles[] = $destination;
+            move_uploaded_file($fileTmp, __DIR__ . '/../files/'.$destination);
+            // Move the uploaded file to the destination directory
+        }
     $queryBuilder->setParameter(30, json_encode($uploadedFiles));
 } else {
     $queryBuilder->setParameter(30, null);
