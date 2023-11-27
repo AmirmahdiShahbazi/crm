@@ -1,14 +1,14 @@
 <?php partial('header'); ?>
 
 <?php partial('sidebar'); ?>
-<?php $sql = 'SELECT * FROM `experts`';
+<?php $sql = 'SELECT * FROM `users`';
     $stmt = $conn->prepare($sql);
-    $experts = $stmt->execute()->fetchAllAssociative(); ?>
+    $users = $stmt->execute()->fetchAllAssociative(); ?>
 <div class="container-fluid">
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-sm-6">
-                <h3>لیست کارشناس ها</h3>
+                <h3>لیست کاربران</h3>
             </div>
             <div class="col-12 col-sm-6">
                 <ol class="breadcrumb">
@@ -16,17 +16,16 @@
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
                             </svg></a></li>
-                    <li class="breadcrumb-item"> کارشناس ها</li>
-                    <li class="breadcrumb-item active"> لیست کارشناس ها</li>
+                    <li class="breadcrumb-item"> کاربران</li>
+                    <li class="breadcrumb-item active"> لیست کاربران</li>
                 </ol>
             </div>
         </div>
     </div>
 </div>
 <?php if(isset($_SESSION['success'])):?>
-    <div class="alert alert-success">
-        <?php echo $_SESSION['success']; unset($_SESSION['success'])?>
-    </div>
+    <div class="alert alert-success"><?php echo $_SESSION['success']?></div>
+    <?php unset($_SESSION['success'])?>
 <?php endif;?>    
 <!-- Container-fluid starts -->
 <div class="container-fluid">
@@ -58,19 +57,19 @@
                             <tr>
                                 <th>نام</th>
                                 <th>شماره تلفن</th>
-                                <th>ادمین</th>
+                                <th>نوع</th>
                                 <th>عملیات</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($experts as $property) : ?>
+                            <?php foreach ($users as $user) : ?>
                                 <tr>
-                                    <td><?php echo $property['name'] ?></td>
-                                    <td><?php echo $property['phone_number'] ?></td>
-                                    <td><i class="fa <?php echo $property['is_admin'] ? 'fa-check text-success': 'fa-times text-danger' ?>"></i></td>
+                                    <td><?php echo $user['name'] ?></td>
+                                    <td><?php echo $user['phone_number'] ?></td>
+                                    <td><?php echo $user['type'] ?></td>
                                     <td>
-                                        <a href="../../experts/show.php?id=<?php echo $property['id']; ?>" class="fa fa-eye text-secondray" title="مشاهده"></a>
-                                        <a href="../../experts/update.php?id=<?php echo $property['id']; ?>" class="fa fa-edit text-primary" title="ویرایش"></a>
+                                        <a href="../../users/show.php?id=<?php echo $user['id']; ?>" class="fa fa-eye text-secondray" title="مشاهده"></a>
+                                        <a href="../../users/update.php?id=<?php echo $user['id']; ?>" class="fa fa-edit text-primary" title="ویرایش"></a>
                                         <a style="cursor:pointer;" class="fa fa-trash text-danger"  data-bs-toggle="modal" data-bs-target="#deleteModal"></a>
                                         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -83,7 +82,7 @@
                                                         <p>آیا از حذف این ملک اطمینان دارید؟</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <a href="../../experts/delete.php?id=<?php echo $property['id']; ?>" class="btn btn-danger">حذف</a>
+                                                        <a href="../../users/delete.php?id=<?php echo $user['id']; ?>" class="btn btn-danger">حذف</a>
                                                     </div>
                                                 </div>
                                             </div>

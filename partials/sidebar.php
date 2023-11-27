@@ -51,6 +51,7 @@
 
                   </ul>
                 </li>
+
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g>
@@ -59,11 +60,28 @@
                           <path fill-rule="evenodd" clip-rule="evenodd" d="M2.45215 11.9688C2.45215 5.13075 4.8331 2.85205 11.976 2.85205C19.1188 2.85205 21.4998 5.13075 21.4998 11.9688C21.4998 18.8059 19.1188 21.0856 11.976 21.0856C4.8331 21.0856 2.45215 18.8059 2.45215 11.9688Z" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         </g>
                       </g>
-                    </svg><span>ایمیل</span></a>
+                    </svg><span>تیکت</span></a>
                   <ul class="sidebar-submenu">
-                    <li><a href="email_inbox.html">صندوق دریافت</a></li>
-                    <li><a href="email_read.html">خواندن ایمیل</a></li>
-                    <li><a href="email_compose.html">ارسال ایمیل</a></li>
+                    <li><a href="../tickets/sent.php">تیکت های ارسال شده</a></li>
+                    <li><a href="../tickets/send.php">ارسال تیکت</a></li>
+                    <li><a href="../tickets/received.php">تیکت های دریافت شده</a></li>
+
+                  </ul>
+                </li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g>
+                        <g>
+                          <path d="M15.7499 9.47167V6.43967C15.7549 4.35167 14.0659 2.65467 11.9779 2.64967C9.88887 2.64567 8.19287 4.33467 8.18787 6.42267V9.47167" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M2.94995 14.2074C2.94995 8.91344 5.20495 7.14844 11.969 7.14844C18.733 7.14844 20.988 8.91344 20.988 14.2074C20.988 19.5004 18.733 21.2654 11.969 21.2654C5.20495 21.2654 2.94995 19.5004 2.94995 14.2074Z" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                      </g>
+                    </svg><span>پرونده ها</span></a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="../visits/index.php">لیست پرونده ها</a></li>
+                    <li><a href="../visits/create.php">ایجاد پرونده جدید</a></li>
+
+
                   </ul>
                 </li>
 
@@ -81,9 +99,8 @@
                       </g>
                     </svg><span>کاربران</span></a>
                   <ul class="sidebar-submenu">
-                    <li><a href="user-profile.html">پروفایل کاربران</a></li>
-                    <li><a href="edit-profile.html">ویرایش کاربران</a></li>
-                    <li><a href="user-cards.html">کارت های کاربران</a></li>
+                    <li><a href="../users/index.php">لیست کاربران</a></li>
+                    <li><a href="../users/create.php">ایجاد کاربر جدید</a></li>
                   </ul>
                 </li>
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="bookmark.html">

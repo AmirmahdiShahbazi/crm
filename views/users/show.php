@@ -1,14 +1,14 @@
 <?php partial('header'); ?>
 
 <?php partial('sidebar'); ?>
-<?php $sql = 'SELECT * FROM `experts` WHERE id = '.$_GET['id'];
+<?php $sql = 'SELECT * FROM `users` where id = '.$_GET['id'].';';
     $stmt = $conn->prepare($sql);
-    $expert = $stmt->execute()->fetchAssociative(); ?>
+    $user = $stmt->execute()->fetchAssociative(); ?>
 <div class="container-fluid">
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-sm-6">
-                <h3>فرم ایجاد کارشناس</h3>
+                <h3>فرم ایجاد کاربر</h3>
             </div>
             <div class="col-12 col-sm-6">
                 <ol class="breadcrumb">
@@ -16,19 +16,14 @@
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
                             </svg></a></li>
-                    <li class="breadcrumb-item"> کارشناس ها</li>
-                    <li class="breadcrumb-item active"> ایجاد کارشناس</li>
+                    <li class="breadcrumb-item"> کاربر ها</li>
+                    <li class="breadcrumb-item active"> مشاهده کاربر</li>
                 </ol>
             </div>
         </div>
     </div>
 </div>
-<?php if(isset($_SESSION['failed'])):?>
-<div class="alert alert-danger">
-    <?php echo $_SESSION['failed']; unset($_SESSION['failed']);?>
 
-</div>
-<?php endif;?>
 <!-- Container-fluid starts -->
 <div class="container-fluid">
 
@@ -38,15 +33,15 @@
             <form method="post" action="" class="theme-form">
 
                 <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label" for="inputPassword3">نام کارشناس</label>
+                    <label class="col-sm-3 col-form-label" for="inputPassword3">نام کاربر</label>
                     <div class="col-sm-9">
-                        <input disabled required class="form-control" value="<?php echo $expert['name']?>" id="inputnumber" name="name" type="text" placeholder="نام کارشناس">
+                        <input disabled required class="form-control" value="<?php echo $user['name']?>" id="inputnumber" name="name" type="text" placeholder="نام کارشناس">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label" for="inputPassword3">تلفن همراه</label>
                     <div class="col-sm-9">
-                        <input disabled required class="form-control" id="inputnumber" value="<?php echo $expert['phone_number']?>" name="phone_number" type="text" placeholder="تلفن همراه">
+                        <input disabled required class="form-control" id="inputnumber" value="<?php echo $user['phone_number']?>" name="phone_number" type="text" placeholder="تلفن همراه">
                     </div>
                     
                 </div>
@@ -70,19 +65,33 @@
 
 
                 <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label" for="inputEmail3">ادمین</label>
+                    <label class="col-sm-3 col-form-label" for="inputEmail3">نوع</label>
 
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input disabled required type="radio" <?php echo $property['is_admin']?'checked':'' ?> name="is_admin" value="1">
-                            <span class="checkmark">بله</span>
+                            <input disabled required type="radio" <?php echo $user['type']=='خریدار'?'checked':'' ?> value="خریدار">
+                            <span class="checkmark">خریدار</span>
                         </label>
 
                     </div>
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input disabled required type="radio" <?php echo !$property['is_admin']?'checked':'' ?> name="is_admin" value="0">
-                            <span class="checkmark">خیر</span>
+                            <input disabled required type="radio" <?php echo $user['type']=='فروشنده'?'checked':'' ?>  value="فروشنده">
+                            <span class="checkmark">فروشنده</span>
+                        </label>
+
+                    </div>
+                    <div class="col-sm-1 ">
+                        <label class="custom-checkbox">
+                            <input disabled required type="radio" <?php echo $user['type']=='اجاره گیرنده'?'checked':'' ?>  value="فروشنده">
+                            <span class="checkmark">اجاره گیرنده</span>
+                        </label>
+
+                    </div>
+                    <div class="col-sm-1 ">
+                        <label class="custom-checkbox">
+                            <input disabled required type="radio" <?php echo $user['type']=='اجاره دهنده'?'checked':'' ?>  value="فروشنده">
+                            <span class="checkmark">اجاره دهنده</span>
                         </label>
 
                     </div>
