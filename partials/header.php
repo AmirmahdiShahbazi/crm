@@ -205,72 +205,102 @@
                   </div>
                   <div class="notification-right"><a href="#"><i data-feather="x"></i></a></div>
                 </div>
-              </li>
-              <li>
-                <div class="media">
-                  <div class="notification-img bg-light-secondary"><img src="../assets/images/avtar/teacher.png" alt=""></div>
-                  <div class="media-body">
-                    <h5> <a class="f-14 m-0" href="user-profile.html">نسترن سبحانی</a></h5>
-                    <p>لورم ایپسوم متن ساختگی نامفهوم ...</p><span>09:20</span>
-                  </div>
-                  <div class="notification-right"><a href="#"><i data-feather="x"></i></a></div>
-                </div>
-              </li>
-              <li>
-                <div class="media">
-                  <div class="notification-img bg-light-info"><img src="../assets/images/avtar/teenager.png" alt="">
-                  </div>
-                  <div class="media-body">
-                    <h5> <a class="f-14 m-0" href="user-profile.html">باران افشار</a></h5>
-                    <p>لورم ایپسوم متن ساختگی نامفهوم ...</p><span>07:20</span>
-                  </div>
-                  <div class="notification-right"><a href="#"><i data-feather="x"></i></a></div>
-                </div>
-              </li>
-              <li>
-                <div class="media">
-                  <div class="notification-img bg-light-success"><img src="../assets/images/avtar/chinese.png" alt=""></div>
-                  <div class="media-body">
-                    <h5> <a class="f-14 m-0" href="user-profile.html">پریسا توکلی</a></h5>
-                    <p>لورم ایپسوم متن ساختگی نامفهوم ...</p><span>05:20</span>
-                  </div>
-                  <div class="notification-right"><a href="#"><i data-feather="x"></i></a></div>
-                </div>
-              </li>
-              <li class="p-0"><a class="btn btn-primary" href="#">بررسی همه</a></li>
-            </ul>
-          </div>
-        </li>
-        <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g>
-                <g>
-                  <path d="M2.99609 8.71995C3.56609 5.23995 5.28609 3.51995 8.76609 2.94995" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                  <path d="M8.76616 20.99C5.28616 20.41 3.56616 18.7 2.99616 15.22L2.99516 15.224C2.87416 14.504 2.80516 13.694 2.78516 12.804" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                  <path d="M21.2446 12.804C21.2246 13.694 21.1546 14.504 21.0346 15.224L21.0366 15.22C20.4656 18.7 18.7456 20.41 15.2656 20.99" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                  <path d="M15.2661 2.94995C18.7461 3.51995 20.4661 5.23995 21.0361 8.71995" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                </g>
-              </g>
-            </svg></a></li>
-        <li class="profile-nav onhover-dropdown pe-0 py-0 me-0">
-          <div class="media profile-media">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g>
-                <g>
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M9.55851 21.4562C5.88651 21.4562 2.74951 20.9012 2.74951 18.6772C2.74951 16.4532 5.86651 14.4492 9.55851 14.4492C13.2305 14.4492 16.3665 16.4342 16.3665 18.6572C16.3665 20.8802 13.2505 21.4562 9.55851 21.4562Z" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M9.55849 11.2776C11.9685 11.2776 13.9225 9.32356 13.9225 6.91356C13.9225 4.50356 11.9685 2.54956 9.55849 2.54956C7.14849 2.54956 5.19449 4.50356 5.19449 6.91356C5.18549 9.31556 7.12649 11.2696 9.52749 11.2776H9.55849Z" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                  <path d="M16.8013 10.0789C18.2043 9.70388 19.2383 8.42488 19.2383 6.90288C19.2393 5.31488 18.1123 3.98888 16.6143 3.68188" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                  <path d="M17.4608 13.6536C19.4488 13.6536 21.1468 15.0016 21.1468 16.2046C21.1468 16.9136 20.5618 17.6416 19.6718 17.8506" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                </g>
-              </g>
-            </svg>
-          </div>
-          <ul class="profile-dropdown onhover-show-div">
-            <li><a href="user-profile.html"><i data-feather="user"></i><span>حساب کاربری </span></a></li>
-            <li><a href="email-application.html"><i data-feather="mail"></i><span>صندوق دریافت</span></a></li>
-            <li><a href="kanban.html"><i data-feather="file-text"></i><span>میز کار</span></a></li>
-            <li><a href="edit-profile.html"><i data-feather="settings"></i><span>تنظیمات</span></a></li>
-            <li><a href="login.html"><i data-feather="log-in"> </i><span>ورود</span></a></li>
+                <ul class="custom-scrollbar">
+                  <li>
+                    <div class="media">
+                      <div class="notification-img bg-light-primary"><img src="../assets/images/avtar/man.png" alt="">
+                      </div>
+                      <div class="media-body">
+                        <h5> <a class="f-14 m-0" href="user-profile.html">پدرام شریفی</a></h5>
+                        <p>لورم ایپسوم متن ساختگی نامفهوم ...</p><span>10:20</span>
+                      </div>
+                      <div class="notification-right"><a href="#"><i data-feather="x"></i></a></div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="media">
+                      <div class="notification-img bg-light-secondary"><img src="../assets/images/avtar/teacher.png"
+                          alt=""></div>
+                      <div class="media-body">
+                        <h5> <a class="f-14 m-0" href="user-profile.html">نسترن سبحانی</a></h5>
+                        <p>لورم ایپسوم متن ساختگی نامفهوم ...</p><span>09:20</span>
+                      </div>
+                      <div class="notification-right"><a href="#"><i data-feather="x"></i></a></div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="media">
+                      <div class="notification-img bg-light-info"><img src="../assets/images/avtar/teenager.png" alt="">
+                      </div>
+                      <div class="media-body">
+                        <h5> <a class="f-14 m-0" href="user-profile.html">باران افشار</a></h5>
+                        <p>لورم ایپسوم متن ساختگی نامفهوم ...</p><span>07:20</span>
+                      </div>
+                      <div class="notification-right"><a href="#"><i data-feather="x"></i></a></div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="media">
+                      <div class="notification-img bg-light-success"><img src="../assets/images/avtar/chinese.png"
+                          alt=""></div>
+                      <div class="media-body">
+                        <h5> <a class="f-14 m-0" href="user-profile.html">پریسا توکلی</a></h5>
+                        <p>لورم ایپسوم متن ساختگی نامفهوم ...</p><span>05:20</span>
+                      </div>
+                      <div class="notification-right"><a href="#"><i data-feather="x"></i></a></div>
+                    </div>
+                  </li>
+                  <li class="p-0"><a class="btn btn-primary" href="#">بررسی همه</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g>
+                    <g>
+                      <path d="M2.99609 8.71995C3.56609 5.23995 5.28609 3.51995 8.76609 2.94995" stroke="#130F26"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path
+                        d="M8.76616 20.99C5.28616 20.41 3.56616 18.7 2.99616 15.22L2.99516 15.224C2.87416 14.504 2.80516 13.694 2.78516 12.804"
+                        stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path
+                        d="M21.2446 12.804C21.2246 13.694 21.1546 14.504 21.0346 15.224L21.0366 15.22C20.4656 18.7 18.7456 20.41 15.2656 20.99"
+                        stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M15.2661 2.94995C18.7461 3.51995 20.4661 5.23995 21.0361 8.71995" stroke="#130F26"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+                  </g>
+                </svg></a></li>
+            <li class="profile-nav onhover-dropdown pe-0 py-0 me-0">
+              <div class="media profile-media">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g>
+                    <g>
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M9.55851 21.4562C5.88651 21.4562 2.74951 20.9012 2.74951 18.6772C2.74951 16.4532 5.86651 14.4492 9.55851 14.4492C13.2305 14.4492 16.3665 16.4342 16.3665 18.6572C16.3665 20.8802 13.2505 21.4562 9.55851 21.4562Z"
+                        stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M9.55849 11.2776C11.9685 11.2776 13.9225 9.32356 13.9225 6.91356C13.9225 4.50356 11.9685 2.54956 9.55849 2.54956C7.14849 2.54956 5.19449 4.50356 5.19449 6.91356C5.18549 9.31556 7.12649 11.2696 9.52749 11.2776H9.55849Z"
+                        stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path
+                        d="M16.8013 10.0789C18.2043 9.70388 19.2383 8.42488 19.2383 6.90288C19.2393 5.31488 18.1123 3.98888 16.6143 3.68188"
+                        stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path
+                        d="M17.4608 13.6536C19.4488 13.6536 21.1468 15.0016 21.1468 16.2046C21.1468 16.9136 20.5618 17.6416 19.6718 17.8506"
+                        stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+              <ul class="profile-dropdown onhover-show-div">
+                <li><a href="user-profile.html"><i data-feather="user"></i><span>حساب کاربری </span></a></li>
+                <li><a href="email-application.html"><i data-feather="mail"></i><span>صندوق دریافت</span></a></li>
+                <li><a href="kanban.html"><i data-feather="file-text"></i><span>میز کار</span></a></li>
+                <li><a href="edit-profile.html"><i data-feather="settings"></i><span>تنظیمات</span></a></li>
+                <li><a href="../views/auth/login.php"><i data-feather="log-in"> </i><span>ورود</span></a></li>
+              </ul>
+            </li>
+
           </ul>
         </li>
       </ul>
