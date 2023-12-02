@@ -5,7 +5,7 @@
 
 
 
-$receiveds = $queryBuilder->select('*')->from('tickets')->where('receiver_id = ?')->setParameter('0', 4)->execute()->fetchAllAssociative() ?>
+$receiveds = $queryBuilder->select('*')->from('tickets')->where('receiver_id = ?')->setParameter('0', $_SESSION['user']['id'])->execute()->fetchAllAssociative() ?>
 <div class="container-fluid">
     <div class="page-title">
         <div class="row">
@@ -85,7 +85,7 @@ $receiveds = $queryBuilder->select('*')->from('tickets')->where('receiver_id = ?
                                     <td><?php echo $received['title'] ?></td>
                                     <td><i class="fa <?php echo $received['seen'] ? 'fa-check text-success' : 'fa-times text-danger' ?>"></i></td>
                                     <td>
-                                        <a href="../../tickets/show-received.php?id=<?php echo $received['id']; ?>" class="fa fa-eye text-secondray" title="مشاهده"></a>
+                                        <a href="../tickets/show-received.php?id=<?php echo $received['id']; ?>" class="fa fa-eye text-secondray" title="مشاهده"></a>
                                         <a style="cursor:pointer;" class="fa fa-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"></a>
                                         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -98,7 +98,7 @@ $receiveds = $queryBuilder->select('*')->from('tickets')->where('receiver_id = ?
                                                         <p>آیا از حذف این ملک اطمینان دارید؟</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <a href="../../users/delete.php?id=<?php echo $property['id']; ?>" class="btn btn-danger">حذف</a>
+                                                        <a href="../users/delete.php?id=<?php echo $property['id']; ?>" class="btn btn-danger">حذف</a>
                                                     </div>
                                                 </div>
                                             </div>

@@ -42,7 +42,7 @@ $experts = $stmt->execute()->fetchAllAssociative();
                                     <div class="email-compose">
 
                                         <div class="email-wrapper">
-                                            <form class="theme-form" method="post" enctype="multipart/form-data" action="../../tickets/send.php">
+                                            <form class="theme-form" method="post" enctype="multipart/form-data" action="../tickets/send.php">
                                                 <div class="form-group">
                                                     <label class="col-form-label pt-0" for="exampleInputEmail1">به</label>
                                                     <select name="receiver" class="js-example-basic-single form-control" name="state">
@@ -62,7 +62,7 @@ $experts = $stmt->execute()->fetchAllAssociative();
                                                 </div>
                                                 <div class="form-group">
                                                     <label>پیام</label>
-                                                    <textarea name="message" id="text-box" name="text-box" cols="10" rows="2"></textarea>
+                                                    <textarea name="message" id="text-box" cols="10" rows="2"></textarea>
                                                 </div>
 
                                                 <ul class="actions">

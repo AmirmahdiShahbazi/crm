@@ -87,8 +87,8 @@ $queryBuilder
     ->setParameter(24, $_POST['floor_covering'] ?? 'none')
     ->setParameter(25, $_POST['kitchen'] ?? 'none')
     ->setParameter(26, $_POST['bathroom'] ?? 'none')
-    ->setParameter(27, $_POST['land_type'] ?? 'none')
-    ->setParameter(28, $_POST['shop_size'] ?? 'none')
+    ->setParameter(27, $_POST['shop_size'] ?? 'none')
+    ->setParameter(28, $_POST['land_type'] ?? 'none')
     ->setParameter(29, $_POST['wall'] ?? 'none');
 
     if (!empty($_FILES['files'])) {
@@ -98,7 +98,7 @@ $queryBuilder
     
         // Create the destination directory if it doesn't exist
         if (!is_dir($destinationDir)) {
-            mkdir('./../files/'.$destinationDir, 0777, true);
+            mkdir('../files/'.$destinationDir, 0777, true);
         }
     
         $uploadedFiles = [];

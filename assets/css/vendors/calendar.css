@@ -2542,7 +2542,7 @@ only screen and (min-resolution: 1.5dppx) {
 
 @font-face {
     font-family: tui-calendar-font-icon;
-    src: url(../../fonts/calendar/icon.eot) format("embedded-opentype"), url(../../fonts/calendar/icon.ttf) format("truetype"), url(../../fonts/calendar/icon.woff) format("woff"), url(../../fonts/calendar/icon.svg) format("svg")
+    src: url(../fonts/calendar/icon.eot) format("embedded-opentype"), url(../fonts/calendar/icon.ttf) format("truetype"), url(../fonts/calendar/icon.woff) format("woff"), url(../fonts/calendar/icon.svg) format("svg")
 }
 
 .calendar-icon {

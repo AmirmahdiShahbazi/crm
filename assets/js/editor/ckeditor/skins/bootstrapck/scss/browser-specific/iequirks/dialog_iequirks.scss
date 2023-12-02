@@ -12,7 +12,7 @@ Quirks mode only.
 */
 
 /* Base it on dialog_ie.css, overriding it with styles defined in this file. */
-@import "../../dialog/dialog";
+@import "../dialog/dialog";
 
 /* [IE7-8] Filter on footer causes background artifacts when opening dialog. */
 .cke_dialog_footer

@@ -1,11 +1,9 @@
 <?php
 // register.php
-require '../bootstrap.php';
-require '../csrf.php';
+require __DIR__.'/../bootstrap.php';
 
 
-// Start session
-session_start();
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -48,14 +46,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'password' => $hashedPassword,
         ]);
 
-        header('Location: ../views/auth/login.php');
+        header('Location: ../auth/login.php');
         exit;
     } else {
         // Phone number is already registered
         $_SESSION['failed'] = 'شماره تلفن تکراری است. یک شماره تلفن دیگر انتخاب کنید';
-        header('Location: ../views/auth/sign-up.php');
+        header('Location: /auth/register.php');
         die();
     }
+}else{
+    include __DIR__.'/../views/auth/sign-up.php';
 }
 ?>
 

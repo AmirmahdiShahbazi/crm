@@ -104,7 +104,7 @@ $clients = $stmt->execute()->fetchAllAssociative(); ?>
                                                             <div class="card">
 
                                                                 <div class="card-body">
-                                                                    <form method="post" enctype="multipart/form-data" action="./../../visits/create.php" class="theme-form">
+                                                                    <form method="post" enctype="multipart/form-data" action="../../visits/create.php" class="theme-form">
                                                                         <div class="mb-3 row" id="reasonInput">
                                                                             <label class="col-sm-3 col-form-label " for="reasonInput">دسته بندی</label>
                                                                             <div class="col-sm-9">
@@ -156,7 +156,7 @@ $clients = $stmt->execute()->fetchAllAssociative(); ?>
                                                                             <div class="mb-3 row">
                                                                                 <label class="col-sm-3 col-form-label" for="inputPassword3">فایل ها</label>
                                                                                 <div class="col-sm-9">
-                                                                                    <a href="./../../visits/download.php?files=<?php echo $files == null ? '' : $files ?>" class="btn btn-primary"><?php echo $files == null ? 'فایلی موجود نمیباشید' : 'دانلود فایل های پیوست' ?></a>
+                                                                                    <a href="../../visits/download.php?files=<?php echo $files == null ? '' : $files ?>" class="btn btn-primary"><?php echo $files == null ? 'فایلی موجود نمیباشید' : 'دانلود فایل های پیوست' ?></a>
                                                                                 </div>
                                                                             </div>
                                                                         <?php endif; ?>
@@ -229,7 +229,7 @@ $clients = $stmt->execute()->fetchAllAssociative(); ?>
                                                         <p>آیا از حذف این ملک اطمینان دارید؟</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <a href="../../users/delete.php?id=<?php echo $user['id']; ?>" class="btn btn-danger">حذف</a>
+                                                        <a href="../users/delete.php?id=<?php echo $user['id']; ?>" class="btn btn-danger">حذف</a>
                                                     </div>
                                                 </div>
                                             </div>

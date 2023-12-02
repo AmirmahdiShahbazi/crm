@@ -69,8 +69,8 @@
                                     <td><?php echo $property['phone_number'] ?></td>
                                     <td><i class="fa <?php echo $property['is_admin'] ? 'fa-check text-success': 'fa-times text-danger' ?>"></i></td>
                                     <td>
-                                        <a href="../../experts/show.php?id=<?php echo $property['id']; ?>" class="fa fa-eye text-secondray" title="مشاهده"></a>
-                                        <a href="../../experts/update.php?id=<?php echo $property['id']; ?>" class="fa fa-edit text-primary" title="ویرایش"></a>
+                                        <a href="../experts/show.php?id=<?php echo $property['id']; ?>" class="fa fa-eye text-secondray" title="مشاهده"></a>
+                                        <a href="../experts/update.php?id=<?php echo $property['id']; ?>" class="fa fa-edit text-primary" title="ویرایش"></a>
                                         <a style="cursor:pointer;" class="fa fa-trash text-danger"  data-bs-toggle="modal" data-bs-target="#deleteModal"></a>
                                         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -83,7 +83,7 @@
                                                         <p>آیا از حذف این ملک اطمینان دارید؟</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <a href="../../experts/delete.php?id=<?php echo $property['id']; ?>" class="btn btn-danger">حذف</a>
+                                                        <a href="../experts/delete.php?id=<?php echo $property['id']; ?>" class="btn btn-danger">حذف</a>
                                                     </div>
                                                 </div>
                                             </div>

@@ -15,7 +15,7 @@ echo PHP_EOL . PHP_EOL;
 
 $autoloadFiles = [
     __DIR__ . '/../vendor/autoload.php',
-    __DIR__ . '/../../../autoload.php'
+    __DIR__ . '/../../autoload.php'
 ];
 
 foreach ($autoloadFiles as $autoloadFile) {

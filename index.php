@@ -75,7 +75,7 @@
                                                 </a>
                                                 <p>اخبار فناوری و تجارت ایران ...</p>
                                             </div>
-                            
+
                                         </div>
                                     </td>
                                     <td><span class="badge badge-light-theme-light font-theme-light">2 ساعت قبل</span></td>

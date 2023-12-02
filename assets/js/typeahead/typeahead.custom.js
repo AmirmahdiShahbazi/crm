@@ -54,7 +54,7 @@
   var bestPictures = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: './../assets/js/typeahead/data/films/post30.json',
+    prefetch: '../assets/js/typeahead/data/films/post30.json',
     remote: {
       url: '../assets/js/typeahead/data/films/queries/%QUERY.json',
       wildcard: '%QUERY'

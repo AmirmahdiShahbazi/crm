@@ -11,7 +11,7 @@ This file contains styles to used by Internet Explorer 8 only.
 */
 
 /* Base it on editor_ie.css, overriding it with styles defined in this file. */
-@import "../../components/editor";
+@import "../components/editor";
 
 .cke_toolbox_collapser .cke_arrow
 {

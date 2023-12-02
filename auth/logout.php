@@ -1,27 +1,23 @@
 <?php
 // logout.php
-require '../bootstrap.php';
-require '../csrf.php';
+require __DIR__.'/../bootstrap.php';
 
 // Start session
-session_start();
 
 // Validate CSRF token
-$csrfToken = $_POST['csrf_token'] ?? '';
-if (!validateCsrfToken($csrfToken)) {
-    // CSRF token is invalid, handle accordingly (e.g., show an error message)
-    $_SESSION['failed'] = 'CSRF token validation failed. Please try again.';
-    header('Location: ../index.php');
-    exit;
-}
+// $csrfToken = $_POST['csrf_token'] ?? '';
+// if (!validateCsrfToken($csrfToken)) {
+//     // CSRF token is invalid, handle accordingly (e.g., show an error message)
+//     $_SESSION['failed'] = 'CSRF token validation failed. Please try again.';
+//     header('Location: /');
+//     exit;
+// }
 
 // Unset all session variables
-$_SESSION = [];
+unset($_SESSION['user']);
 
-// Destroy the session
-session_destroy();
 
 // Redirect to the login page
-header('Location: ../views/auth/login.php');
+header('Location: /auth/login.php');
 exit;
 ?>

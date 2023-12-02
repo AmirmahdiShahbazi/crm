@@ -20,6 +20,11 @@
 <script src="../assets/js/scrollbar/custom.js"></script>
 <script src="../assets/js/config.js"></script>
 <script src="../assets/js/sidebar-menu.js"></script>
+<script src="../assets/js/rating/jquery.barrating.js"></script>
+<script src="../assets/js/rating/rating-script.js"></script>
+<script src="../assets/js/owlcarousel/owl.carousel.js"></script>
+<script src="../assets/js/slick-slider/slick.min.js"></script>
+<script src="../assets/js/slick-slider/slick-theme.js"></script>
 <script src="../assets/js/chart/knob/knob.min.js"></script>
 <script src="../assets/js/chart/knob/knob-chart.js"></script>
 <script src="../assets/js/chart/apex-chart/apex-chart.js"></script>
@@ -51,14 +56,21 @@
 <script src="../assets/js/email-app.js"></script>
 <script src="../assets/js/persiandatepicker/persian-date-0.1.8.min.js"></script>
 <script src="../assets/js/persiandatepicker/persian-datepicker-0.4.5.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
+
+
+
 <script>
   $(document).ready(function() {
+    jalaliDatepicker.startWatch();
+
     $('.js-example-basic-single').select2();
 
   });
 </script>
 <script>
   $('.datepicker2').persianDatepicker({
+
     'format': 'YYYY/MM/DD',
     timePicker: {
       enabled: true
@@ -163,6 +175,7 @@
     }
   });
 </script>
+
 </body>
 
 </html>

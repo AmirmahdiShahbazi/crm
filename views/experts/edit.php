@@ -36,7 +36,7 @@ $expert = $stmt->execute()->fetchAssociative(); ?>
     <div class="card">
 
         <div class="card-body">
-            <form method="post" action="../../experts/update.php?id=<?php echo $_GET['id'] ?>" class="theme-form">
+            <form method="post" action="../experts/update.php?id=<?php echo $_GET['id'] ?>" class="theme-form">
 
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label" for="inputPassword3">نام کارشناس</label>

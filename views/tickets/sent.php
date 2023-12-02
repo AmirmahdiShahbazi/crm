@@ -84,8 +84,8 @@ $receiveds = $queryBuilder->select('*')->from('tickets')->where('sender_id = ?')
                                     </td>
                                     <td><?php echo $received['title'] ?></td>
                                     <td><i class="fa <?php echo $received['seen'] ? 'fa-check text-success' : 'fa-times text-danger' ?>"></i></td>
-                                    <!-- <td>
-                                        <a href="../../tickets/show-sent.php?id=<?php echo $received['id']; ?>" class="fa fa-eye text-secondray" title="مشاهده"></a>
+                                    <td>
+                                        <a href="../tickets/show-sent.php?id=<?php echo $received['id']; ?>" class="fa fa-eye text-secondray" title="مشاهده"></a>
                                         <a style="cursor:pointer;" class="fa fa-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"></a>
                                         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -98,12 +98,12 @@ $receiveds = $queryBuilder->select('*')->from('tickets')->where('sender_id = ?')
                                                         <p>آیا از حذف این ملک اطمینان دارید؟</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <a href="../../users/delete.php?id=<?php echo $property['id']; ?>" class="btn btn-danger">حذف</a>
+                                                        <a href="../users/delete.php?id=<?php echo $property['id']; ?>" class="btn btn-danger">حذف</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </td> -->
+                                    </td>
 
                                 </tr>
                             <?php endforeach; ?>

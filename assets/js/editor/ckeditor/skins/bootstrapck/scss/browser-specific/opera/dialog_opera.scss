@@ -11,7 +11,7 @@ This file contains styles to used by all versions of Opera only.
 */
 
 /* Base it on dialog.css, overriding it with styles defined in this file. */
-@import "../../dialog/dialog";
+@import "../dialog/dialog";
 
 /* Opera has problem with box-shadow and td with border-collapse: collapse */
 /* inset shadow is mis-aligned */

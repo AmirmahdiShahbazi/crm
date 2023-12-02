@@ -217,7 +217,7 @@
     -webkit-transform: scale(1.4);
     transform: scale(1.4);
     z-index: 1;
-    background: url(../../images/button_builder/select.png) repeat scroll 0 0 rgba(0, 0, 0, 0)
+    background: url(../images/button_builder/select.png) repeat scroll 0 0 rgba(0, 0, 0, 0)
 }
 
 .button-builder-wrap .custom-radio {
@@ -256,7 +256,7 @@
     position: relative;
     z-index: 1;
     top: 3px;
-    background: url(../../images/button_builder/checkbox-sprite.png) no-repeat 0 0 transparent
+    background: url(../images/button_builder/checkbox-sprite.png) no-repeat 0 0 transparent
 }
 
 .button-builder-wrap .custom-checkbox:hover {
@@ -278,7 +278,7 @@
 }
 
 .button-builder-wrap .colorpicker-hex {
-    background: url(../../images/button_builder/hex_bg.gif) no-repeat scroll right center rgba(0, 0, 0, 0);
+    background: url(../images/button_builder/hex_bg.gif) no-repeat scroll right center rgba(0, 0, 0, 0);
     left: 220px;
     padding-left: 15px;
     position: absolute;
@@ -310,7 +310,7 @@
 }
 
 .button-builder-wrap .colorpicker-hue {
-    background: url(../../images/button_builder/rainbow.png) no-repeat scroll center center rgba(0, 0, 0, 0);
+    background: url(../images/button_builder/rainbow.png) no-repeat scroll center center rgba(0, 0, 0, 0);
     cursor: default;
     height: 150px;
     left: 171px;
@@ -320,7 +320,7 @@
 }
 
 .button-builder-wrap .colorpicker-hue div {
-    background: url(../../images/button_builder/scroll.png) no-repeat scroll left top rgba(0, 0, 0, 0);
+    background: url(../images/button_builder/scroll.png) no-repeat scroll left top rgba(0, 0, 0, 0);
     height: 16px;
     left: 0;
     margin-top: -8px;

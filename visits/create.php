@@ -51,7 +51,7 @@ if (!empty($_FILES['files'])) {
 
     // Create the destination directory if it doesn't exist
     if (!is_dir($destinationDir)) {
-        mkdir('./../files/'.$destinationDir, 0777, true);
+        mkdir('../files/'.$destinationDir, 0777, true);
     }
 
     $uploadedFiles = [];

@@ -11,7 +11,7 @@ This file contains styles to used by Internet Explorer 7 only.
 */
 
 /* Base it on dialog_ie.css, overriding it with styles defined in this file. */
-@import "../../dialog/dialog";
+@import "../dialog/dialog";
 
 .cke_dialog_title
 {

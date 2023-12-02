@@ -2,8 +2,13 @@
 
 <?php partial('sidebar'); ?>
 <?php $sql = 'SELECT * FROM `users`';
-    $stmt = $conn->prepare($sql);
-    $users = $stmt->execute()->fetchAllAssociative(); ?>
+$stmt = $conn->prepare($sql);
+$users = $stmt->execute()->fetchAllAssociative();
+
+$sql = 'SELECT * FROM `experts`';
+$stmt = $conn->prepare($sql);
+$experts = $stmt->execute()->fetchAllAssociative(); ?>
+
 <div class="container-fluid">
     <div class="page-title">
         <div class="row">
@@ -23,10 +28,15 @@
         </div>
     </div>
 </div>
-<?php if(isset($_SESSION['success'])):?>
-    <div class="alert alert-success"><?php echo $_SESSION['success']?></div>
-    <?php unset($_SESSION['success'])?>
-<?php endif;?>    
+<?php if (isset($_SESSION['failed'])) : ?>
+    <div class="alert alert-danger"><?php echo $_SESSION['failed'] ?></div>
+
+    <?php unset($_SESSION['failed']) ?>
+<?php endif; ?>
+<?php if (isset($_SESSION['success'])) : ?>
+    <div class="alert alert-success"><?php echo $_SESSION['success'] ?></div>
+    <?php unset($_SESSION['success']) ?>
+<?php endif; ?>
 <!-- Container-fluid starts -->
 <div class="container-fluid">
     <div class="col-sm-12">
@@ -68,9 +78,9 @@
                                     <td><?php echo $user['phone_number'] ?></td>
                                     <td><?php echo $user['type'] ?></td>
                                     <td>
-                                        <a href="../../users/show.php?id=<?php echo $user['id']; ?>" class="fa fa-eye text-secondray" title="مشاهده"></a>
-                                        <a href="../../users/update.php?id=<?php echo $user['id']; ?>" class="fa fa-edit text-primary" title="ویرایش"></a>
-                                        <a style="cursor:pointer;" class="fa fa-trash text-danger"  data-bs-toggle="modal" data-bs-target="#deleteModal"></a>
+                                        <a href="../users/show.php?id=<?php echo $user['id']; ?>" class="fa fa-eye text-secondray" title="مشاهده"></a>
+                                        <a href="../users/update.php?id=<?php echo $user['id']; ?>" class="fa fa-edit text-primary" title="ویرایش"></a>
+                                        <a style="cursor:pointer;" class="fa fa-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"></a>
                                         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
@@ -82,8 +92,66 @@
                                                         <p>آیا از حذف این ملک اطمینان دارید؟</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <a href="../../users/delete.php?id=<?php echo $user['id']; ?>" class="btn btn-danger">حذف</a>
+                                                        <a href="../users/delete.php?id=<?php echo $user['id']; ?>" class="btn btn-danger">حذف</a>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <a style="cursor:pointer;" class="fa fa-user" data-bs-toggle="modal" data-bs-target="#showModal"></a>
+                                        <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showModal" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">اختصاص کارشناس</h5>
+                                                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="container-fluid">
+
+                                                            <div class="card">
+
+                                                                <div class="card-body">
+                                                                    <form method="post" enctype="multipart/form-data" action="../../expert_user/create.php" class="theme-form">
+                                                                        <input class="form-control" value="<?php echo $user['id'] ?>" name="user" type="hidden" required placeholder="دسته بندی ">
+
+                                                                        <div class="mb-3 row">
+                                                                            <label class="col-sm-3 col-form-label" for="inputPassword3">کارشناس</label>
+                                                                            <div class="col-sm-9">
+
+                                                                                <select name="expert" class="js-example-basic-single form-control">
+                                                                                    <option>کارشناس</option>
+                                                                                    <?php foreach ($experts as $expert) : ?>
+                                                                                        <option value="<?php echo $expert['id'] ?>"><?php echo $expert['name'] ?></option>
+                                                                                    <?php endforeach; ?>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="mb-3 row">
+                                                                            <label class="col-sm-3 col-form-label" for="inputPassword3">تاریخ</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input class="datepicker2 form-control digits" name="date" type="text">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="mb-3 row">
+                                                                            <label class="col-sm-3 col-form-label" for="inputPassword3"></label>
+
+                                                                            <div class="col-sm-9">
+                                                                                <input class="btn btn-primary" value="تایید" type="submit">
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+
+
+
+
+                                                            </div>
+                                                            <!-- Container-fluid Ends-->
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>

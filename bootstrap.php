@@ -1,7 +1,12 @@
 <?php
-
-
 session_start();
+
+
+
+
+require __DIR__.'/csrf.php';
+
+
 include __DIR__.'/vendor/autoload.php';
 use Doctrine\DBAL\DriverManager;
 
@@ -28,4 +33,5 @@ if(sizeof($result))
 }else{
     unset($_SESSION['new_ticket']);
 }
+
 include __DIR__ . '/functions.php';

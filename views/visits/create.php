@@ -48,7 +48,7 @@ $experts = $stmt->execute()->fetchAllAssociative();
     <div class="card">
 
         <div class="card-body">
-            <form method="post" enctype="multipart/form-data" action="./../../visits/create.php" class="theme-form">
+            <form method="post" enctype="multipart/form-data" action="../../visits/create.php" class="theme-form">
                 <div class="mb-3 row" id="reasonInput">
                     <label class="col-sm-3 col-form-label " for="reasonInput">دسته بندی</label>
                     <div class="col-sm-9">

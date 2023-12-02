@@ -35,7 +35,7 @@ $sent = $queryBuilder->select('*')->from('tickets', 't')->where('t.id = ' . intv
                                     <div class="email-compose">
 
                                         <div class="email-wrapper">
-                                            <form class="theme-form" method="post" enctype="multipart/form-data" action="../../tickets/send.php">
+                                            <form class="theme-form" method="post" enctype="multipart/form-data" action="../tickets/send.php">
                                                 <div class="form-group">
                                                     <label class="col-form-label pt-0" for="exampleInputEmail1">به</label>
                                                     <input name="title" value="<?php

@@ -39,7 +39,7 @@ $property = $stmt->execute()->fetchAssociative(); ?>
     <div class="card">
 
         <div class="card-body">
-            <form method="post" enctype="multipart/form-data" action="../../properties/update.php?id=<?php echo $_GET['id'] ?>" class="theme-form">
+            <form method="post" enctype="multipart/form-data" action="../properties/update.php?id=<?php echo $_GET['id'] ?>" class="theme-form">
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label" for="inputEmail3">نوع معامله</label>
                     <div class="col-sm-1 ">
@@ -335,63 +335,63 @@ $property = $stmt->execute()->fetchAssociative(); ?>
                     <label class="col-sm-3 col-form-label" for="inputEmail3">نوع زمین</label>
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input type="checkbox" <?php echo $property['land_type'] == 'مسکونی' ? 'checked' : '' ?> name="land_type"  value="مسکونی">
+                            <input type="radio" <?php echo $property['land_type'] == 'مسکونی' ? 'checked' : '' ?> name="land_type"  value="مسکونی">
                             <span class="checkmark">مسکونی</span>
                         </label>
 
                     </div>
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input type="checkbox" <?php echo $property['land_type'] == 'تجاری' ? 'checked' : '' ?> name="land_type"  value="تجاری">
+                            <input type="radio" <?php echo $property['land_type'] == 'تجاری' ? 'checked' : '' ?> name="land_type"  value="تجاری">
                             <span class="checkmark">تجاری</span>
                         </label>
 
                     </div>
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input type="checkbox" <?php echo $property['land_type'] == 'باغ' ? 'checked' : '' ?> name="land_type"  value="باغ">
+                            <input type="radio" <?php echo $property['land_type'] == 'باغ' ? 'checked' : '' ?> name="land_type"  value="باغ">
                             <span class="checkmark">باغ</span>
                         </label>
 
                     </div>
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input type="checkbox" <?php echo $property['land_type'] == 'خدماتی' ? 'checked' : '' ?> name="land_type"  value="خدماتی">
+                            <input type="radio" <?php echo $property['land_type'] == 'خدماتی' ? 'checked' : '' ?> name="land_type"  value="خدماتی">
                             <span class="checkmark">خدماتی</span>
                         </label>
 
                     </div>
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input type="checkbox" <?php echo $property['land_type'] == 'فرهنگی' ? 'checked' : '' ?> name="land_type"  value="فرهنگی">
+                            <input type="radio" <?php echo $property['land_type'] == 'فرهنگی' ? 'checked' : '' ?> name="land_type"  value="فرهنگی">
                             <span class="checkmark">فرهنگی</span>
                         </label>
 
                     </div>
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input type="checkbox" <?php echo $property['land_type'] == 'مزروعی' ? 'checked' : '' ?> name="land_type"  value="مزروعی">
+                            <input type="radio" <?php echo $property['land_type'] == 'مزروعی' ? 'checked' : '' ?> name="land_type"  value="مزروعی">
                             <span class="checkmark">مزروعی</span>
                         </label>
 
                     </div>
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input type="checkbox" <?php echo $property['land_type'] == 'صنعتی' ? 'checked' : '' ?> name="land_type"  value="صنعتی">
+                            <input type="radio" <?php echo $property['land_type'] == 'صنعتی' ? 'checked' : '' ?> name="land_type"  value="صنعتی">
                             <span class="checkmark">صنعتی</span>
                         </label>
 
                     </div>
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input type="checkbox" <?php echo $property['شهری'] == 'مسکونی' ? 'checked' : '' ?> name="land_type"  value="شهری">
+                            <input type="radio" <?php echo $property['شهری'] == 'مسکونی' ? 'checked' : '' ?> name="land_type"  value="شهری">
                             <span class="checkmark">شهری</span>
                         </label>
 
                     </div>
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input type="checkbox" <?php echo $property['شهرکی'] == 'مسکونی' ? 'checked' : '' ?> name="land_type"  value="شهرکی">
+                            <input type="radio" <?php echo $property['شهرکی'] == 'مسکونی' ? 'checked' : '' ?> name="land_type"  value="شهرکی">
                             <span class="checkmark">شهرکی</span>
                         </label>
                     </div>
@@ -401,21 +401,21 @@ $property = $stmt->execute()->fetchAssociative(); ?>
 
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input type="checkbox" <?php echo $property['land_type'] == 'ساحلی' ? 'checked' : '' ?> name="land_type"  value="ساحلی">
+                            <input type="radio" <?php echo $property['land_type'] == 'ساحلی' ? 'checked' : '' ?> name="land_type"  value="ساحلی">
                             <span class="checkmark">ساحلی</span>
                         </label>
 
                     </div>
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input type="checkbox" <?php echo $property['land_type'] == 'داخل بافت' ? 'checked' : '' ?> name="land_type"  value="داخل بافت">
+                            <input type="radio" <?php echo $property['land_type'] == 'داخل بافت' ? 'checked' : '' ?> name="land_type"  value="داخل بافت">
                             <span class="checkmark">داخل بافت</span>
                         </label>
 
                     </div>
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input type="checkbox" <?php echo $property['land_type'] == 'خارج بافت' ? 'checked' : '' ?> name="land_type"  value="خارج بافت">
+                            <input type="radio" <?php echo $property['land_type'] == 'خارج بافت' ? 'checked' : '' ?> name="land_type"  value="خارج بافت">
                             <span class="checkmark">خارج بافت</span>
                         </label>
 

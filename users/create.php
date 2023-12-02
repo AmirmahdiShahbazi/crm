@@ -53,7 +53,7 @@ $queryBuilder
         ]
     )->setParameter('0', $_POST['name'])
     ->setParameter('1', $_POST['phone_number'])
-    ->setParameter('2', md5($_POST['password']))
+    ->setParameter('2', password_hash($_POST['password'], PASSWORD_BCRYPT))
     ->setParameter('3', $_POST['type']);
 $queryBuilder->execute();
 

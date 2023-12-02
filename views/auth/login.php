@@ -1,8 +1,6 @@
 <?php
-require '../../csrf.php';
 
 // Start session
-session_start();
 
 ?>
 <!DOCTYPE html>
@@ -17,27 +15,27 @@ session_start();
   <meta name="keywords"
     content="admin template, Zeta admin template, dashboard template, flat admin template, responsive admin template, web app">
   <meta name="author" content="pixelstrap">
-  <link rel="icon" href="../../assets/images/logo/favicon-icon.png" type="image/x-icon">
-  <link rel="shortcut icon" href="../../assets/images/logo/favicon-icon.png" type="image/x-icon">
+  <link rel="icon" href="../assets/images/logo/favicon-icon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../assets/images/logo/favicon-icon.png" type="image/x-icon">
   <title>قالب مدیریتی زتا </title>
-  <link rel="stylesheet" type="text/css" href="../../assets/css/vendors/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/vendors/font-awesome.css">
   <!-- ico-font-->
-  <link rel="stylesheet" type="text/css" href="../../assets/css/vendors/icofont.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
   <!-- Themify icon-->
-  <link rel="stylesheet" type="text/css" href="../../assets/css/vendors/themify.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify.css">
   <!-- Flag icon-->
-  <link rel="stylesheet" type="text/css" href="../../assets/css/vendors/flag-icon.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/vendors/flag-icon.css">
   <!-- Feather icon-->
-  <link rel="stylesheet" type="text/css" href="../../assets/css/vendors/feather-icon.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/vendors/feather-icon.css">
   <!-- Plugins css start-->
   <!-- Plugins css Ends-->
   <!-- Bootstrap css-->
-  <link rel="stylesheet" type="text/css" href="../../assets/css/vendors/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
   <!-- App css-->
-  <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
-  <link id="color" rel="stylesheet" href="../../assets/css/color-1.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+  <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
   <!-- Responsive css-->
-  <link rel="stylesheet" type="text/css" href="../../assets/css/responsive.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
 </head>
 
 <body>
@@ -54,7 +52,7 @@ session_start();
     <div class="row">
       <div class="col-12">
         <div class="login-card">
-          <form class="theme-form login-form" action="../../auth/login.php" method="post">
+          <form class="theme-form login-form" action="./../../auth/login.php" method="POST">
             <h4>ورود</h4>
             <h6>خوش آمدید! به حساب کاربری خود وارد شوید.</h6>
             <div class="form-group">
@@ -63,7 +61,6 @@ session_start();
                 <input class="form-control" type="text" name="phone_number" required="" placeholder="شماره تلفن">
               </div>
             </div>
-            <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
             <div class="form-group">
               <label>رمز عبور</label>
               <div class="input-group"><span class="input-group-text"><i class="icon-lock"></i></span>
@@ -95,26 +92,25 @@ session_start();
                     </i></a></li>
               </ul>
             </div> -->
-            <p>حساب کاربری ندارید؟<a class="ms-2" href="sign-up.php">ایجاد حساب کاربری</a></p>
           </form>
         </div>
       </div>
     </div>
   </div>
   <!-- latest jquery-->
-  <script src="../../assets/js/jquery-3.5.1.min.js"></script>
+  <script src="../assets/js/jquery-3.5.1.min.js"></script>
   <!-- Bootstrap js-->
-  <script src="../../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
   <!-- feather icon js-->
-  <script src="../../assets/js/icons/feather-icon/feather.min.js"></script>
-  <script src="../../assets/js/icons/feather-icon/feather-icon.js"></script>
+  <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+  <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
   <!-- scrollbar js-->
   <!-- Sidebar jquery-->
-  <script src="../../assets/js/config.js"></script>
+  <script src="../assets/js/config.js"></script>
   <!-- Plugins JS start-->
   <!-- Plugins JS Ends-->
   <!-- Theme js-->
-  <script src="../../assets/js/script.js"></script>
+  <script src="../assets/js/script.js"></script>
   <!-- login js-->
   <!-- Plugin used-->
 </body>

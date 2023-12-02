@@ -1,9 +1,9 @@
 <?php partial('header'); ?>
 
 <?php partial('sidebar'); ?>
-<?php $sql = 'SELECT * FROM `experts` WHERE id = '.$_GET['id'];
-    $stmt = $conn->prepare($sql);
-    $expert = $stmt->execute()->fetchAssociative(); ?>
+<?php $sql = 'SELECT * FROM `experts` WHERE id = ' . $_GET['id'];
+$stmt = $conn->prepare($sql);
+$expert = $stmt->execute()->fetchAssociative(); ?>
 <div class="container-fluid">
     <div class="page-title">
         <div class="row">
@@ -23,12 +23,13 @@
         </div>
     </div>
 </div>
-<?php if(isset($_SESSION['failed'])):?>
-<div class="alert alert-danger">
-    <?php echo $_SESSION['failed']; unset($_SESSION['failed']);?>
+<?php if (isset($_SESSION['failed'])) : ?>
+    <div class="alert alert-danger">
+        <?php echo $_SESSION['failed'];
+        unset($_SESSION['failed']); ?>
 
-</div>
-<?php endif;?>
+    </div>
+<?php endif; ?>
 <!-- Container-fluid starts -->
 <div class="container-fluid">
 
@@ -40,30 +41,17 @@
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label" for="inputPassword3">نام کارشناس</label>
                     <div class="col-sm-9">
-                        <input disabled required class="form-control" value="<?php echo $expert['name']?>" id="inputnumber" name="name" type="text" placeholder="نام کارشناس">
+                        <input disabled required class="form-control" value="<?php echo $expert['name'] ?>" id="inputnumber" name="name" type="text" placeholder="نام کارشناس">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label" for="inputPassword3">تلفن همراه</label>
                     <div class="col-sm-9">
-                        <input disabled required class="form-control" id="inputnumber" value="<?php echo $expert['phone_number']?>" name="phone_number" type="text" placeholder="تلفن همراه">
+                        <input disabled required class="form-control" id="inputnumber" value="<?php echo $expert['phone_number'] ?>" name="phone_number" type="text" placeholder="تلفن همراه">
                     </div>
-                    
+
                 </div>
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label" for="inputPassword3">رمز عبور</label>
-                    <div class="col-sm-9">
-                        <input disabled  class="form-control" id="inputnumber" name="password" type="password" placeholder="رمز عبور">
-                    </div>
-                    
-                </div>
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label" for="inputPassword3">تکرار رمز عبور</label>
-                    <div class="col-sm-9">
-                        <input disabled  class="form-control" id="inputnumber" name="confirmation_password" type="password" placeholder="تکرار رمز عبور">
-                    </div>
-                    
-                </div>
+
 
 
 
@@ -74,14 +62,14 @@
 
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input disabled required type="radio" <?php echo $property['is_admin']?'checked':'' ?> name="is_admin" value="1">
+                            <input disabled required type="radio" <?php echo $property['is_admin'] ? 'checked' : '' ?> name="is_admin" value="1">
                             <span class="checkmark">بله</span>
                         </label>
 
                     </div>
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input disabled required type="radio" <?php echo !$property['is_admin']?'checked':'' ?> name="is_admin" value="0">
+                            <input disabled required type="radio" <?php echo !$property['is_admin'] ? 'checked' : '' ?> name="is_admin" value="0">
                             <span class="checkmark">خیر</span>
                         </label>
 
@@ -89,6 +77,72 @@
 
 
                 </div>
+
+                <?php
+
+                $sql = 'SELECT property_id FROM `expert_property` WHERE expert_id =' . $_GET['id'];
+                $stmt = $conn->prepare($sql);
+                $property_ids = $stmt->execute()->fetchAllAssociative();
+                $ids = [];
+                foreach ($property_ids as $property_id) {
+                    $ids[] = $property_id['property_id'];
+                }
+                $properties = [];
+                if (!empty($ids)) {
+                    $sql = "SELECT * FROM properties
+                    WHERE id IN (" . implode(',', $ids) . ")";
+                    $stmt = $conn->prepare($sql);
+                    $properties = $stmt->execute()->fetchAllAssociative();
+                }
+
+                $sql = 'SELECT user_id FROM `expert_user` WHERE expert_id =' . $_GET['id'];
+                $stmt = $conn->prepare($sql);
+                $user_ids = $stmt->execute()->fetchAllAssociative();
+                $ids = [];
+                foreach ($user_ids as $user_id) {
+                    $ids[] = $user_id['user_id'];
+                }
+
+                $users = [];
+                if (!empty($ids)) {
+
+                    $sql = "SELECT * FROM users
+                            WHERE id IN (" . implode(',', $ids) . ")";
+                    $stmt = $conn->prepare($sql);
+                    $users = $stmt->execute()->fetchAllAssociative();
+                }
+
+                if (!empty($properties)) {
+                    echo '<hr>';
+                }
+
+                ?>
+                <?php foreach ($properties as $property) : ?>
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label" for="inputPassword3">ملک</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" id="Website" type="text" disabled value="<?php echo $property['address'] ?>">
+                        </div>
+                    </div>
+
+                <?php endforeach; ?>
+
+
+                <?php
+                if (!empty($users)) {
+                    echo '<hr>';
+                } ?>
+                <?php foreach ($users as $user) : ?>
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label" for="inputPassword3">مشتری</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" id="Website" type="text" disabled value="<?php echo $user['name']; ?>">
+                        </div>
+                    </div>
+
+                <?php endforeach; ?>
+
+
 
             </form>
         </div>

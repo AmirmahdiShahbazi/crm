@@ -15,43 +15,63 @@ $queryBuilder
     ->values(
         [
             'title' => ':title',
-            'message' => ':message',
             'receiver_id' => ':receiver_id',
             'sender_id' => ':sender_id',
-            'files' => ':files'
         ]
     )
     ->setParameter('title', $_POST['title'])
-    ->setParameter('message', $_POST['message'])
     ->setParameter('receiver_id', $_POST['receiver'])
     ->setParameter('sender_id', 4);
+$queryBuilder->execute();
+$lastInsertedId = $queryBuilder->getConnection()->lastInsertId();
 
-    if (!empty($_FILES['files'])) {
-        $files = $_FILES['files'];
-        $fileCount = count($files['name']);
-        $destinationDir = 'tickets/' . 4 . '/';
-    
-        // Create the destination directory if it doesn't exist
-        if (!is_dir($destinationDir)) {
-            mkdir('./../files/'.$destinationDir, 0777, true);
-        }
-    
-        $uploadedFiles = [];
-        for ($i = 0; $i < $fileCount; $i++) {
-            $fileName = $files['name'][$i];
-            $fileTmp = $files['tmp_name'][$i];
-            $fileSize = $files['size'][$i];
-            $fileError = $files['error'][$i];
-            $extension = pathinfo($fileName, PATHINFO_EXTENSION);
-            $destination = $destinationDir . md5($fileName) . '.' . $extension;
-            $uploadedFiles[] = $destination;
-            move_uploaded_file($fileTmp, __DIR__ . '/../files/'.$destination);
-            // Move the uploaded file to the destination directory
-        }
-    
-    $queryBuilder->setParameter('files', json_encode($uploadedFiles));
+$queryBuilder
+    ->insert('messages')
+    ->values([
+        'message' => ':message',
+        'type' => ':type',
+        'ticket_id' => ':ticket_id'
+    ])
+    ->setParameter('message', $_POST['message'])
+    ->setParameter('type', 'text')
+    ->setParameter('ticket_id', $lastInsertedId);
+$queryBuilder->execute();
+
+if (!empty($_FILES['files'])) {
+    $files = $_FILES['files'];
+    $fileCount = count($files['name']);
+    $destinationDir = 'tickets/' . $_SESSION['user']['id'] . '/';
+
+    if (!is_dir($destinationDir)) {
+        mkdir('../files/' . $destinationDir, 0777, true);
+    }
+
+    $uploadedFiles = [];
+    for ($i = 0; $i < $fileCount; $i++) {
+        $fileName = $files['name'][$i];
+        $fileTmp = $files['tmp_name'][$i];
+        $fileSize = $files['size'][$i];
+        $fileError = $files['error'][$i];
+        $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+        $destination = $destinationDir . md5($fileName) . '.' . $extension;
+        $uploadedFiles[] = $destination;
+        move_uploaded_file($fileTmp, __DIR__ . '/../files/' . $destination);
+        // Move the uploaded file to the destination directory
+    }
+
+    $queryBuilder
+        ->insert('messages')
+        ->values([
+            'message' => ':message',
+            'type' => ':type',
+            'ticket_id' => ':ticket_id'
+        ])
+        ->setParameter('message',json_encode($uploadedFiles))
+        ->setParameter('type', 'file')
+        ->setParameter('ticket_id', $lastInsertedId);
+    $queryBuilder->execute();
 } else {
-    $queryBuilder->setParameter('files', null);
+    // $queryBuilder->setParameter('files', null);
 }
 
 $queryBuilder->execute();
