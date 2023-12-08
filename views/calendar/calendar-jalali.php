@@ -1525,20 +1525,6 @@
         defaultDate: '2021-04-29',
         selectable: true,
         selectHelper: true,
-        select: function (start, end) {
-          var title = prompt('عنوان رویداد : ');
-          var eventData;
-          if (title) {
-            eventData = {
-              title: title,
-              start: start,
-              end: end
-            };
-            $('#calendar2').fullCalendar('renderEvent', eventData,
-              true);
-          }
-          $('#calendar2').fullCalendar('unselect');
-        },
         lang: 'fa',
         isJalaali: true,
         isRTL: true,
@@ -1591,6 +1577,12 @@
                     element.css('background-color', 'grey');
                     break;
             }
+        },
+        eventDrop: function (event, delta, revertFunc, jsEvent, ui, view) {
+            // Update the database with the new start and end dates
+            // Assuming you have a function to update the event in your database
+            
+            updateEventInDatabase(event.id, event.start.format(), event.end.format());
         },
         // events: [{
         //     title: 'رویداد روزانه',
@@ -1651,6 +1643,26 @@
 
       // Fetch reminders from the server after the calendar is initialized
   fetchReminders();
+
+  function updateEventInDatabase(eventId, newStartDate, newEndDate) {
+    // Make an AJAX request to update the event in the database
+    $.ajax({
+        url: 'reminder/updateEvent.php', // Replace with your server endpoint
+        type: 'POST',
+        data: {
+            eventId: eventId,
+            newStartDate: newStartDate,
+            newEndDate: newEndDate
+        },
+        success: function (response) {
+            console.log(response);
+        },
+        error: function (error) {
+            console.error('Error updating event in the database:', error);
+        }
+    });
+}
+
 
 // Function to add a reminder
 function addReminder(title, type, start, end) {

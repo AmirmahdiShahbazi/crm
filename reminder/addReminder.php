@@ -11,8 +11,8 @@ function convertPersianToLatinDigits($str)
     return str_replace($persianDigits, $latinDigits, $str);
 }
 
-require_once "../bootstrap.php";
-require_once "functions.php";
+require_once __DIR__."/../bootstrap.php";
+require_once __DIR__."/functions.php";
 
 // Assuming you have access to the current user's ID in your application
 $currentUserId = $_SESSION['user_id']; // Update this line based on your authentication mechanism
