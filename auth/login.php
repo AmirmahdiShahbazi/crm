@@ -1,10 +1,7 @@
 <?php
 // login.php
-require '../bootstrap.php';
-require '../csrf.php';
-
-// Start session
-session_start();
+require __DIR__.'/../bootstrap.php';
+require __DIR__.'/../csrf.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -27,14 +24,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Authentication successful
         session_start();
         $_SESSION['user'] = $userData;
+        $_SESSION['user_id'] = $userData['id'];
         header('Location: ../index.php');
         exit;
     } else {
         // Authentication failed
         $_SESSION['failed'] = 'مشخصات نامعتبر. لطفا مجددا تلاش کنید';
-        header('Location: ../views/auth/login.php');
+        include __DIR__.'/../views/auth/login.php';
         die();
     }
+} else {
+    include __DIR__.'/../views/auth/login.php';
 }
 ?>
 

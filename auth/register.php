@@ -1,11 +1,7 @@
 <?php
 // register.php
-require '../bootstrap.php';
-require '../csrf.php';
-
-
-// Start session
-session_start();
+require __DIR__.'/../bootstrap.php';
+require __DIR__.'/../csrf.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -22,11 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $phoneNumber = $_POST['phone_number'];
     $password = $_POST['password'];
 
-    if (!preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8}$/", $_POST['password'])) {
-      $_SESSION['failed'] = 'رمز عبور باید حدافل هشت رقم و شامل ارقام و حروف باشد';
-      header('Location: ../views/auth/sign-up.php');
-      die();
-  }
+//     if (!preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8}$/", $_POST['password'])) {
+//       $_SESSION['failed'] = 'رمز عبور باید حدافل هشت رقم و شامل ارقام و حروف باشد';
+//       header('Location: ../views/auth/sign-up.php');
+//       die();
+//   }
   
   if ($_POST['password'] != $_POST['confirmation_password']) {
       $_SESSION['failed'] = 'رمز عبور و تکرار رمز عبور باید یکی باشد';
@@ -53,9 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Phone number is already registered
         $_SESSION['failed'] = 'شماره تلفن تکراری است. یک شماره تلفن دیگر انتخاب کنید';
-        header('Location: ../views/auth/sign-up.php');
+        include __DIR__.'/../views/auth/sign-up.php';
         die();
     }
+} else {
+    include __DIR__.'/../views/auth/sign-up.php';
 }
 ?>
 

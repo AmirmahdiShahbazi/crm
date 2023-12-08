@@ -1,10 +1,7 @@
 <?php
 // logout.php
-require '../bootstrap.php';
-require '../csrf.php';
-
-// Start session
-session_start();
+require __DIR__.'/../bootstrap.php';
+require __DIR__.'/../csrf.php';
 
 // Validate CSRF token
 $csrfToken = $_POST['csrf_token'] ?? '';

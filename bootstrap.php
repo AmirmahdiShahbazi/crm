@@ -8,8 +8,8 @@ use Doctrine\DBAL\DriverManager;
 
 $connectionParams = [
     'dbname' => 'crm',
-    'user' => 'amir',
-    'password' => '1234',
+    'user' => 'root',
+    'password' => '',
     'host' => 'localhost',
     'driver' => 'pdo_mysql',
 ];
