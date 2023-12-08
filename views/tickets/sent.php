@@ -5,7 +5,7 @@
 
 
 
-$receiveds = $queryBuilder->select('*')->from('tickets')->where('sender_id = ?')->setParameter('0', 4)->execute()->fetchAllAssociative() ?>
+$receiveds = $queryBuilder->select('*')->from('tickets')->where('sender_id = ?')->setParameter('0', $_SESSION['user']['id'])->execute()->fetchAllAssociative() ?>
 <div class="container-fluid">
     <div class="page-title">
         <div class="row">

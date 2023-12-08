@@ -1,7 +1,7 @@
 <?php
 
 
-include __DIR__ . '../bootstrap.php';
+include __DIR__ . '/../bootstrap.php';
 
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {

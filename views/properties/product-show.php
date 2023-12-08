@@ -20,7 +20,7 @@ foreach ($expert_ids as $expert_id) {
     $ids[] = $expert_id['expert_id'];
 }
 $experts = [];
-if (!is_null($ids) && !empty($ids)) {
+if (!empty($ids)) {
     $sql = "SELECT * FROM experts
     WHERE id IN (" . implode(',', $ids) . ")";
     $stmt = $conn->prepare($sql);
@@ -127,6 +127,7 @@ if (!is_null($ids) && !empty($ids)) {
                 </div>
             </div>
             <?php if(!empty($experts)):?>
+
             <div class="col-xl-2 col-md-6 box-col-6 xl-50 proorder-lg-1">
                 <div class="card">
                     <div class="card-body">

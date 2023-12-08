@@ -71,16 +71,16 @@
                                     <td>
                                         <a href="../experts/show.php?id=<?php echo $property['id']; ?>" class="fa fa-eye text-secondray" title="مشاهده"></a>
                                         <a href="../experts/update.php?id=<?php echo $property['id']; ?>" class="fa fa-edit text-primary" title="ویرایش"></a>
-                                        <a style="cursor:pointer;" class="fa fa-trash text-danger"  data-bs-toggle="modal" data-bs-target="#deleteModal"></a>
-                                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                                        <a style="cursor:pointer;" class="fa fa-trash text-danger"  data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $expert['id']?>"></a>
+                                        <div class="modal fade" id="deleteModal<?php echo $expert['id']?>" tabindex="-1" role="dialog" aria-labelledby="deleteModal<?php echo $expert['id']?>" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">حذف ملک</h5>
+                                                        <h5 class="modal-title">حذف کارشناس</h5>
                                                         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>آیا از حذف این ملک اطمینان دارید؟</p>
+                                                        <p>آیا از حذف این کارشناس اطمینان دارید؟</p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <a href="../experts/delete.php?id=<?php echo $property['id']; ?>" class="btn btn-danger">حذف</a>

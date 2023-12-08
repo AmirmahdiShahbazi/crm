@@ -1,14 +1,37 @@
 <?php
-// login.php
+session_start();
 
-if (isset($_SESSION['user'])) {
+// login.php
+if (!empty($_SESSION['user']) || isset($_SESSION['user'])) {
     header('Location: /');
     die();
 }
-require_once __DIR__ . '/../bootstrap.php';
+
+
+
+
+require __DIR__.'/../csrf.php';
+
+
+include __DIR__.'/../vendor/autoload.php';
+use Doctrine\DBAL\DriverManager;
+
+
+$connectionParams = [
+    'dbname' => 'crm',
+    'user' => 'amir',
+    'password' => '1234',
+    'host' => '127.0.0.1',
+    'driver' => 'pdo_mysql',
+];
+
+$conn = DriverManager::getConnection($connectionParams);
+$queryBuilder = $conn->createQueryBuilder();
+
 
 // Start session
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
 
     // Validate CSRF token
     // $csrfToken = $_POST['csrf_token'] ?? '';

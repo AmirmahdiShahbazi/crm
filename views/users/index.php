@@ -7,7 +7,22 @@ $users = $stmt->execute()->fetchAllAssociative();
 
 $sql = 'SELECT * FROM `experts`';
 $stmt = $conn->prepare($sql);
-$experts = $stmt->execute()->fetchAllAssociative(); ?>
+$experts = $stmt->execute()->fetchAllAssociative();
+
+$sql = 'SELECT * FROM `groups`';
+$stmt = $conn->prepare($sql);
+$groups = $stmt->execute()->fetchAllAssociative();
+
+
+if (isset($_GET['group']) && !empty($_GET['group'])) {
+    $sql = 'SELECT * FROM `users` WHERE type LIKE ?';
+    $stmt = $conn->prepare($sql);
+    $stmt->bindValue(1, '%'.$_GET['group']. '%');
+    $users = $stmt->execute()->fetchAllAssociative();
+    
+}
+
+?>
 
 <div class="container-fluid">
     <div class="page-title">
@@ -43,24 +58,25 @@ $experts = $stmt->execute()->fetchAllAssociative(); ?>
         <div class="card">
 
             <div class="card-body">
-                <!-- <div class="table-responsive dataTables_wrapper me-0">
+                <div class="table-responsive dataTables_wrapper me-0">
                     <table>
                         <tbody class="dataTables_filter custom-datatable-filter">
                             <tr class="d-inline-block me-sm-3">
                                 <td>
-                                    <label for="min">حداقل سن : </label>
-                                    <input class="form-control m-0" id="min" type="search" name="min">
-                                </td>
-                            </tr>
-                            <tr class="d-inline-block">
-                                <td>
-                                    <label for="max">حداکثر سن : </label>
-                                    <input class="form-control m-0" id="max" type="search" name="max">
+                                    <form action="">
+                                        <select id="group" name="group" class="js-example-basic-single form-control">
+                                            <option value="">گروه</option>
+                                            <?php foreach ($groups as $group) : ?>
+                                                <option value="<?php echo $group['title'] ?>"><?php echo $group['title'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <input type="submit" class="btn btn-primary mt-3">
+                                    </form>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                </div> -->
+                </div>
                 <div class="table-responsive">
                     <table class="display" id="datatable-range">
                         <thead>
@@ -76,12 +92,12 @@ $experts = $stmt->execute()->fetchAllAssociative(); ?>
                                 <tr>
                                     <td><?php echo $user['name'] ?></td>
                                     <td><?php echo $user['phone_number'] ?></td>
-                                    <td><?php echo $user['type'] ?></td>
+                                    <td><?php echo json_decode($user['type'], true)[0] ?></td>
                                     <td>
                                         <a href="../users/show.php?id=<?php echo $user['id']; ?>" class="fa fa-eye text-secondray" title="مشاهده"></a>
                                         <a href="../users/update.php?id=<?php echo $user['id']; ?>" class="fa fa-edit text-primary" title="ویرایش"></a>
-                                        <a style="cursor:pointer;" class="fa fa-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"></a>
-                                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                                        <a style="cursor:pointer;" class="fa fa-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<?php $user['id'] ?>"></a>
+                                        <div class="modal fade" id="deleteModal<?php $user['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModal<?php $user['id'] ?>" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -99,8 +115,8 @@ $experts = $stmt->execute()->fetchAllAssociative(); ?>
                                         </div>
 
 
-                                        <a style="cursor:pointer;" class="fa fa-user" data-bs-toggle="modal" data-bs-target="#showModal"></a>
-                                        <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showModal" aria-hidden="true">
+                                        <a style="cursor:pointer;" class="fa fa-user" data-bs-toggle="modal" data-bs-target="#showModal<?php echo $user['id'] ?>"></a>
+                                        <div class="modal fade" id="showModal<?php echo $user['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="showModal<?php echo $user['id'] ?>" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

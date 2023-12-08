@@ -1,12 +1,31 @@
 <?php partial('header'); ?>
 
 <?php partial('sidebar'); ?>
-<?php $sql = 'SELECT * FROM `properties`';
+
+<?php
+
+
+
+
+$sql = 'SELECT * FROM `properties`';
 $stmt = $conn->prepare($sql);
 $properties = $stmt->execute()->fetchAllAssociative();
+
 $sql = 'SELECT * FROM `experts`';
 $stmt = $conn->prepare($sql);
 $experts = $stmt->execute()->fetchAllAssociative();
+
+
+
+if (isset($_GET['s'])) {
+    if (isset($_GET['s'])) {
+        $searchTerm = '%' . $_GET['s'] . '%';
+        $sql = 'SELECT * FROM properties WHERE address LIKE :searchTerm OR neighborhood LIKE :searchTerm';
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':searchTerm', $searchTerm);
+        $properties = $stmt->execute()->fetchAllAssociative();
+    }
+}
 ?>
 
 
@@ -29,6 +48,7 @@ $experts = $stmt->execute()->fetchAllAssociative();
         </div>
     </div>
 </div>
+
 <?php if (isset($_SESSION['success'])) : ?>
     <div class="alert alert-success"><?php echo $_SESSION['success'] ?></div>
     <?php unset($_SESSION['success']) ?>
@@ -279,7 +299,7 @@ $experts = $stmt->execute()->fetchAllAssociative();
                         <div class="product-search">
                             <form>
                                 <div class="form-group m-0">
-                                    <input class="form-control" type="search" placeholder="جستجو ..." data-original-title="" title=""><i class="fa fa-search"></i>
+                                    <input class="form-control" type="search" value="<?php echo $_GET['s'] ?>" placeholder="جستجو ..." data-original-title="" name="s" title=""><i class="fa fa-search"></i>
                                 </div>
                             </form>
                         </div>
@@ -298,19 +318,20 @@ $experts = $stmt->execute()->fetchAllAssociative();
                                         <img class="img-fluid" src="https://www.bhg.com/thmb/H9VV9JNnKl-H1faFXnPlQfNprYw=/1799x0/filters:no_upscale():strip_icc()/white-modern-house-curved-patio-archway-c0a4a3b3-aa51b24d14d0464ea15d36e05aa85ac9.jpg" alt="">
 
                                     <?php else : ?>
-                                        <img class="img-fluid" src="./../../files/<?php echo json_decode($property['files'], true)[0] ?>" alt="">
+                                        <img class="img-fluid" src="<?php echo "./../../files/" . json_decode($property['files'], true)[0] ?>" alt="">
                                     <?php endif; ?>
                                     <div class="product-hover">
                                         <ul>
                                             <li><a data-bs-toggle="modal" data-bs-target="#exampleModalCenter<?php echo $property['id'] ?>"><i class="fa fa-eye"></i></a></li>
                                             <li><a href="./../../properties/update.php?id=<?php echo $property['id'] ?>"><i class="fa fa-edit"></i></a></li>
-                                            <li><a style="cursor:pointer;" class="fa fa-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $property['id']?>"></a>
+                                            <li><a style="cursor:pointer;" class="fa fa-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $property['id'] ?><?php echo $property['id'] ?>"></a></li>
+                                            <li> <a style="cursor:pointer;" class="fa fa-user text-secondary" data-bs-toggle="modal" data-bs-target="#showModal<?php echo $property['id'] ?>"></a>
 
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="modal fade" id="deleteModal<?php echo $property['id']?>" tabindex="-1" role="dialog" aria-labelledby="deleteModal<?php echo $property['id']?>" aria-hidden="true">
+                                <div class="modal fade" id="deleteModal<?php echo $property['id'] ?><?php echo $property['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModal<?php echo $property['id'] ?><?php echo $property['id'] ?>" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -363,6 +384,60 @@ $experts = $stmt->execute()->fetchAllAssociative();
                                         </div>
                                     </div>
                                 </div>
+                                <div class="modal fade" id="showModal<?php echo $property['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="showModal<?php echo $property['id'] ?>" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">اختصاص کارشناس</h5>
+                                                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="container-fluid">
+
+                                                    <div class="card">
+
+                                                        <div class="card-body">
+                                                            <form method="post" enctype="multipart/form-data" action="./../../expert_property/create.php" class="theme-form">
+                                                                <input class="form-control" value="<?php echo $property['id'] ?>" name="property" type="hidden" required placeholder="دسته بندی ">
+
+                                                                <div class="mb-3 row">
+                                                                    <label class="col-sm-3 col-form-label" for="inputPassword3">کارشناس</label>
+                                                                    <div class="col-sm-9">
+
+                                                                        <select name="expert" class="js-example-basic-single form-control">
+                                                                            <?php foreach ($experts as $expert) : ?>
+                                                                                <option value="<?php echo $expert['id'] ?>"><?php echo $expert['name'] ?></option>
+                                                                            <?php endforeach; ?>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mb-3 row">
+                                                                    <label class="col-sm-3 col-form-label" for="inputPassword3">تاریخ</label>
+                                                                    <div class="col-sm-9">
+                                                                        <input class="datepicker2 form-control digits" name="date" type="text">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mb-3 row">
+                                                                    <label class="col-sm-3 col-form-label" for="inputPassword3"></label>
+
+                                                                    <div class="col-sm-9">
+                                                                        <input class="btn btn-primary" value="تایید" type="submit">
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+
+
+
+
+                                                    </div>
+                                                    <!-- Container-fluid Ends-->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="product-details">
                                     <h4><?php echo $property['neighborhood'] ?></h4>
                                     </a>
@@ -382,18 +457,16 @@ $experts = $stmt->execute()->fetchAllAssociative();
                 <div class="col-12 col-sm-6">
                     <div class="info-block">
                         <ul class="pagination pagination-primary">
-                            <li class="page-item disabled"><a class="page-link" href="javascript:void(0)" tabindex="-1">قبلی</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                            <li class="page-item active"><a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(فعلی)</span></a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0)">بعدی</a></li>
+                            <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+                                <li class="page-item <?php echo ($i == $page) ? 'active' : ''; ?>">
+                                    <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                                </li>
+                            <?php endfor; ?>
                         </ul>
+
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 text-end">
-                    <div class="pagination-content"><span class="f-w-600">نمایش محصولات 1 - 24 از 200 نتیجه</span>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

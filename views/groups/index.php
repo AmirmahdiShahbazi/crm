@@ -2,19 +2,15 @@
 
 <?php partial('sidebar'); ?>
 <?php
-$sql = 'SELECT * FROM `requirements`';
+$sql = 'SELECT * FROM `groups`';
 $stmt = $conn->prepare($sql);
-$requirements = $stmt->execute()->fetchAllAssociative();
-
-
-$sql = 'SELECT * FROM `users`';
-$stmt = $conn->prepare($sql);
-$clients = $stmt->execute()->fetchAllAssociative(); ?>
+$groups = $stmt->execute()->fetchAllAssociative();
+?>
 <div class="container-fluid">
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-sm-6">
-                <h3>لیست نیازمندی ها</h3>
+                <h3>لیست گروه ها</h3>
             </div>
             <div class="col-12 col-sm-6">
                 <ol class="breadcrumb">
@@ -22,8 +18,8 @@ $clients = $stmt->execute()->fetchAllAssociative(); ?>
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
                             </svg></a></li>
-                    <li class="breadcrumb-item"> پرونده ها</li>
-                    <li class="breadcrumb-item active"> لیست نیازمندی ها</li>
+                    <li class="breadcrumb-item"> گروه ها</li>
+                    <li class="breadcrumb-item active"> لیست گروه ها</li>
                 </ol>
             </div>
         </div>
@@ -61,12 +57,12 @@ $clients = $stmt->execute()->fetchAllAssociative(); ?>
                         </tbody>
                     </table>
                 </div> -->
-                <a style="cursor:pointer;" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createModal">افزودن نیازمدی</a>
+                <a style="cursor:pointer;" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createModal">افزودن گروه</a>
                 <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">ایجاد نیازمندی</h5>
+                                <h5 class="modal-title">ایجاد گروه</h5>
                                 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -75,47 +71,20 @@ $clients = $stmt->execute()->fetchAllAssociative(); ?>
                                     <div class="card">
 
                                         <div class="card-body">
-                                            <form method="post" enctype="multipart/form-data" action="../../requirements/create.php" class="theme-form">
-
-
+                                            <form method="post" enctype="multipart/form-data" action="../../groups/create.php" class="theme-form">
                                                 <div class="mb-3 row">
-                                                    <label class="col-sm-3 col-form-label" for="inputPassword3">مشتری</label>
+                                                    <label class="col-sm-3 col-form-label" for="inputPassword3">عنوان</label>
                                                     <div class="col-sm-9">
-                                                        <select name="user" class="js-example-basic-single form-control">
-                                                            <?php foreach ($clients as $client) : ?>
-                                                                <option value="<?php echo $client['id'] ?>"><?php echo $client['name'] ?></option>
-                                                            <?php endforeach; ?>
-                                                        </select>
+                                                        <input class=" form-control" required name="title" type="text">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
-                                                    <label class="col-sm-3 col-form-label" for="inputPassword3">توضیحات </label>
+                                                    <label class="col-sm-3 col-form-label" for="inputPassword3"></label>
+
                                                     <div class="col-sm-9">
-                                                        <input class=" form-control" name="title" type="text">
+                                                        <input type="submit" value="تایید" class="btn btn-primary" type="text">
                                                     </div>
                                                 </div>
-
-
-
-
-
-                                                <div class="mb-3 row">
-                                                    <label class="col-sm-3 col-form-label" for="inputPassword3">تاریخ </label>
-                                                    <div class="col-sm-9">
-                                                        <input class="datepicker2 form-control digits" name="date" type="text">
-                                                    </div>
-                                                </div>
-
-                                                <div class="mb-3 row">
-                                                    <label class="col-sm-3 col-form-label" for="inputPassword3"> </label>
-                                                    <div class="col-sm-9">
-                                                        <input class="btn btn-primary" type="submit" value="تایید">
-                                                    </div>
-                                                </div>
-
-
-
-
                                             </form>
                                         </div>
 
@@ -135,24 +104,20 @@ $clients = $stmt->execute()->fetchAllAssociative(); ?>
                     <table class="display" id="datatable-range">
                         <thead>
                             <tr>
-                                <th>مشتری</th>
-                                <th>نیازمندی</th>
-                                <th>تاریخ</th>
+                                <th>عنوان</th>
+
                                 <th>عملیات</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($requirements as $requirement) : ?>
+                            <?php foreach ($groups as $group) : ?>
                                 <tr>
-                                    <td><?php $sql = 'SELECT * FROM `users` WHERE id = ' . $requirement['user_id'];
-                                        $stmt = $conn->prepare($sql);
-                                        echo $stmt->execute()->fetchAssociative()['name']; ?></td>
-                                    <td><?php echo $requirement['title']; ?></td>
-                                    <td><?php echo $requirement['date'];?></td>
+
+                                    <td><?php echo $group['title']; ?></td>
                                     <td>
-                                        
-                                        <a style="cursor:pointer;" class="fa fa-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $requirement['id']?>"></a>
-                                        <div class="modal fade" id="deleteModal<?php echo $requirement['id']?>" tabindex="-1" role="dialog" aria-labelledby="deleteModal<?php echo $requirement['id']?>" aria-hidden="true">
+
+                                        <a style="cursor:pointer;" class="fa fa-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $group['id']?><?php echo $group['id'] ?>"></a>
+                                        <div class="modal fade" id="deleteModal<?php echo $group['id']?><?php echo $group['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModal<?php echo $group['id']?><?php echo $group['id'] ?>" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -163,8 +128,54 @@ $clients = $stmt->execute()->fetchAllAssociative(); ?>
                                                         <p>آیا از حذف این نیازمندی اطمینان دارید؟</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <a href="../requirements/delete.php?id=<?php echo $requirement['id']; ?>" class="btn btn-danger">حذف</a>
+                                                        <a href="../groups/delete.php?id=<?php echo $group['id']; ?>" class="btn btn-danger">حذف</a>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <a style="cursor:pointer;" class="fa fa-edit text-primary" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $group['id']?><?php echo $group['id'] ?>"></a>
+                                        <div class="modal fade" id="editModal<?php echo $group['id']?><?php echo $group['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="editModal<?php echo $group['id']?><?php echo $group['id'] ?>" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">ویرایش گروه</h5>
+                                                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="container-fluid">
+
+                                                            <div class="card">
+
+                                                                <div class="card-body">
+                                                                    <form method="post" enctype="multipart/form-data" action="../../groups/update.php" class="theme-form">
+                                                                        <div class="mb-3 row">
+                                                                            <label class="col-sm-3 col-form-label" for="inputPassword3">عنوان</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input class=" form-control" value="<?php echo $group['id'] ?>" required name="id" type="hidden">
+
+                                                                                <input class=" form-control" value="<?php echo $group['title'] ?>" required name="title" type="text">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="mb-3 row">
+                                                                            <label class="col-sm-3 col-form-label" for="inputPassword3"></label>
+
+                                                                            <div class="col-sm-9">
+                                                                                <input type="submit" value="تایید" class="btn btn-primary" type="text">
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+
+
+
+
+                                                            </div>
+                                                            <!-- Container-fluid Ends-->
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>

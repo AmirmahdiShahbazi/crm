@@ -9,11 +9,15 @@ $queryBuilder->update('users')
     ->set('name', '?')
     ->set('phone_number', '?')
     ->set('type', '?')
+    ->set('active', '?')
+
     ->where('id = ?');
 $queryBuilder->setParameter(0, $_POST['name'])
     ->setParameter(1, $_POST['phone_number'])
-    ->setParameter(2, $_POST['type'])
-    ->setParameter(3, $_GET['id']);
+    ->setParameter(2, json_encode($_POST['groups']))
+    ->setParameter(3, $_POST['active'])
+
+    ->setParameter(4, $_GET['id']);
 
 if (!isset($_POST['name'])  || !isset($_POST['phone_number'])) {
     $_SESSION['failed'] = 'لطفا اطلاعات را به درستی وارد کنید';

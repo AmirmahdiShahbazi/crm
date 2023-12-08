@@ -4,7 +4,6 @@ include __DIR__ . '/../bootstrap.php';
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     die('not allowed');
 }
-
 if (
     empty($_POST['expert']) || empty($_POST['date']) ||
     empty($_POST['property']) )

@@ -1,5 +1,7 @@
 <?php partial('header'); ?>
-
+<?php $sql = 'SELECT * FROM `groups`';
+$stmt = $conn->prepare($sql);
+$groups = $stmt->execute()->fetchAllAssociative(); ?>
 <?php partial('sidebar'); ?>
 <div class="container-fluid">
     <div class="page-title">
@@ -20,12 +22,13 @@
         </div>
     </div>
 </div>
-<?php if(isset($_SESSION['failed'])):?>
-<div class="alert alert-danger">
-    <?php echo $_SESSION['failed']; unset($_SESSION['failed']);?>
+<?php if (isset($_SESSION['failed'])) : ?>
+    <div class="alert alert-danger">
+        <?php echo $_SESSION['failed'];
+        unset($_SESSION['failed']); ?>
 
-</div>
-<?php endif;?>
+    </div>
+<?php endif; ?>
 <!-- Container-fluid starts -->
 <div class="container-fluid">
 
@@ -45,21 +48,34 @@
                     <div class="col-sm-9">
                         <input required class="form-control" id="inputnumber" name="phone_number" type="text" placeholder="تلفن همراه">
                     </div>
-                    
+
                 </div>
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label" for="inputPassword3">رمز عبور</label>
                     <div class="col-sm-9">
                         <input required class="form-control" id="inputnumber" name="password" type="password" placeholder="رمز عبور">
                     </div>
-                    
+
                 </div>
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label" for="inputPassword3">تکرار رمز عبور</label>
                     <div class="col-sm-9">
                         <input required class="form-control" id="inputnumber" name="confirmation_password" type="password" placeholder="تکرار رمز عبور">
                     </div>
-                    
+
+                </div>
+
+
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label" for="inputPassword3">گروه ها</label>
+                    <div class="col-sm-9">
+                        <select class="js-example-basic-multiple" required name="groups[]" multiple="multiple">
+                            <?php foreach ($groups as $group) : ?>
+                                <option value="<?php echo $group['title']?>"><?php echo $group['title'] ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+
                 </div>
 
 
@@ -67,39 +83,25 @@
 
 
                 <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label" for="inputEmail3">نوع</label>
+                    <label class="col-sm-3 col-form-label" for="inputEmail3">فعال</label>
 
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input required type="radio" name="type" value="خریدار">
-                            <span class="checkmark">خریدار</span>
+                            <input required type="radio" checked name="active" value="1">
+                            <span class="checkmark">بله</span>
                         </label>
 
                     </div>
                     <div class="col-sm-1 ">
                         <label class="custom-checkbox">
-                            <input required type="radio" name="type" value="فروشنده">
-                            <span class="checkmark">فروشنده</span>
-                        </label>
-
-                    </div>
-                    <div class="col-sm-1 ">
-                        <label class="custom-checkbox">
-                            <input required type="radio" name="type" value="اجاره دهنده">
-                            <span class="checkmark">اجاره دهنده</span>
-                        </label>
-
-                    </div>
-                    <div class="col-sm-1 ">
-                        <label class="custom-checkbox">
-                            <input required type="radio" name="type" value="اجاره گیرنده">
-                            <span class="checkmark">اجاره گیرنده</span>
+                            <input required type="radio" name="active" value="0">
+                            <span class="checkmark">خیر</span>
                         </label>
 
                     </div>
 
 
-                </div>
+                </div> 
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">ارسال</button>
                 </div>
@@ -113,3 +115,8 @@
     <!-- Container-fluid Ends-->
 </div>
 <?php partial('footer') ?>
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
+</script>

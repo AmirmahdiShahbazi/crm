@@ -55,6 +55,11 @@ $queryBuilder
     ->setParameter('2', password_hash($_POST['password'], PASSWORD_BCRYPT))
     ->setParameter('3', $_POST['is_admin'] ?? 0);
 $queryBuilder->execute();
+$user_id = $queryBuilder->getConnection()->lastInsertId();
+$sql = 'SELECT * FROM `experts` WHERE id = ' . $user_id;
+$stmt = $conn->prepare($sql);
+$user = $stmt->execute()->fetchAssociative();
+sendSms($user['phone_number'], "یک حساب کاربری برای شما ساخته شد "."\n رمز عبور: " . $_POST['password'], $user['name']);
 
 $_SESSION['success'] = 'کارشناس با موفقیت ساخته شد';
 header('Location: /experts');

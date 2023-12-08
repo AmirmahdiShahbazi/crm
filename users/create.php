@@ -4,10 +4,9 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     include __DIR__ . '/../views/users/create.php';
     die();
 }
-
 if (
     empty($_POST['name']) || empty($_POST['password']) ||
-    empty($_POST['phone_number']) || empty($_POST['confirmation_password'])
+    empty($_POST['phone_number']) || empty($_POST['confirmation_password']) || empty($_POST['active'])
 ) {
     $_SESSION['failed'] = 'لطفا اطلاعات را به درستی وارد کنید';
     header('Location: /users/create.php');
@@ -49,14 +48,18 @@ $queryBuilder
             'name' => '?',
             'phone_number' => '?',
             'password' => '?',
-            'type' => '?'
+            'type' => '?',
+            'active'=>'?'
         ]
     )->setParameter('0', $_POST['name'])
     ->setParameter('1', $_POST['phone_number'])
     ->setParameter('2', password_hash($_POST['password'], PASSWORD_BCRYPT))
-    ->setParameter('3', $_POST['type']);
+    ->setParameter('3', json_encode($_POST['groups']))
+    ->setParameter('4', $_POST['active']);
+
 $queryBuilder->execute();
 
-$_SESSION['success'] = 'کارشناس با موفقیت ساخته شد';
+sendSms($user['phone_number'], "یک حساب کاربری برای شما ساخته شد "."\n رمز عبور: " . $_POST['password'], $user['name']);
+$_SESSION['success'] = 'کاربر با موفقیت ساخته شد';
 header('Location: /users');
 die();

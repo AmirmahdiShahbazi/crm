@@ -21,23 +21,26 @@ $queryBuilder
     )
     ->setParameter('title', $_POST['title'])
     ->setParameter('receiver_id', $_POST['receiver'])
-    ->setParameter('sender_id', 4);
-$queryBuilder->execute();
+    ->setParameter('sender_id', $_SESSION['user']['id']);
+    $queryBuilder->execute();
 $lastInsertedId = $queryBuilder->getConnection()->lastInsertId();
-
 $queryBuilder
     ->insert('messages')
     ->values([
         'message' => ':message',
         'type' => ':type',
-        'ticket_id' => ':ticket_id'
+        'ticket_id' => ':ticket_id',
+        'sender_id' => ':sender_id',
+        'receiver_id' => ':receiver_id'
     ])
     ->setParameter('message', $_POST['message'])
     ->setParameter('type', 'text')
-    ->setParameter('ticket_id', $lastInsertedId);
+    ->setParameter('ticket_id', $lastInsertedId)
+    ->setParameter('sender_id', $_SESSION['user']['id'])
+    ->setParameter('receiver_id', $_POST['receiver']);
 $queryBuilder->execute();
 
-if (!empty($_FILES['files'])) {
+if (!empty($_FILES['files']['name'][0])) {
     $files = $_FILES['files'];
     $fileCount = count($files['name']);
     $destinationDir = 'tickets/' . $_SESSION['user']['id'] . '/';
@@ -64,17 +67,20 @@ if (!empty($_FILES['files'])) {
         ->values([
             'message' => ':message',
             'type' => ':type',
-            'ticket_id' => ':ticket_id'
+            'ticket_id' => ':ticket_id',
+            'sender_id' => ':sender_id',
+            'receiver_id' => ':receiver_id'
         ])
-        ->setParameter('message',json_encode($uploadedFiles))
+        ->setParameter('message', json_encode($uploadedFiles))
         ->setParameter('type', 'file')
-        ->setParameter('ticket_id', $lastInsertedId);
+        ->setParameter('ticket_id', $lastInsertedId)
+        ->setParameter('sender_id', $_SESSION['user']['id'])
+        ->setParameter('receiver_id', $_POST['receiver']);;
     $queryBuilder->execute();
 } else {
     // $queryBuilder->setParameter('files', null);
 }
 
-$queryBuilder->execute();
 $_SESSION['success'] = 'تیکت با موفقیت ارسال شد';
 header('Location: /tickets/send.php');
 die();

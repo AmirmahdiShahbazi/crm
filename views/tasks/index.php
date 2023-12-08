@@ -119,8 +119,8 @@ $tasks = $stmt->execute()->fetchAllAssociative(); ?>
                                                                 <td>
                                                                     <p class="task_desc_0"><?php echo $task['description'] ?></p>
                                                                 </td>
-                                                                <td> <a style="cursor:pointer;" class="fa fa-trash text-danger" style="font-size:16px;" data-bs-toggle="modal" data-bs-target="#deleteModal"></a>
-                                                                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                                                                <td> <a style="cursor:pointer;" class="fa fa-trash text-danger" style="font-size:16px;" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $task['id']?>"></a>
+                                                                    <div class="modal fade" id="deleteModal<?php echo $task['id']?>" tabindex="-1" role="dialog" aria-labelledby="deleteModal<?php echo $task['id']?>" aria-hidden="true">
                                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                                             <div class="modal-content">
                                                                                 <div class="modal-header">

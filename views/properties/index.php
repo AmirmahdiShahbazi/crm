@@ -80,8 +80,8 @@ $experts = $stmt->execute()->fetchAllAssociative();
                                     <td>
                                         <a href="../properties/show.php?id=<?php echo $property['id']; ?>" class="fa fa-eye text-secondray" title="مشاهده"></a>
                                         <a href="../properties/update.php?id=<?php echo $property['id']; ?>" class="fa fa-edit text-primary" title="ویرایش"></a>
-                                        <a style="cursor:pointer;" class="fa fa-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"></a>
-                                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                                        <a style="cursor:pointer;" class="fa fa-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $property['id']?>"></a>
+                                        <div class="modal fade" id="deleteModal<?php echo $property['id']?>" tabindex="-1" role="dialog" aria-labelledby="deleteModal<?php echo $property['id']?>" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -99,8 +99,8 @@ $experts = $stmt->execute()->fetchAllAssociative();
                                         </div>
 
 
-                                        <a style="cursor:pointer;" class="fa fa-user" data-bs-toggle="modal" data-bs-target="#showModal"></a>
-                                        <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showModal" aria-hidden="true">
+                                        <a style="cursor:pointer;" class="fa fa-user" data-bs-toggle="modal" data-bs-target="#showModal<?php echo $property['id']?>"></a>
+                                        <div class="modal fade" id="showModal<?php echo $property['id']?>" tabindex="-1" role="dialog" aria-labelledby="showModal<?php echo $property['id']?>" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

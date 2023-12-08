@@ -53,8 +53,8 @@ $queryBuilder
             'kitchen' => '?',
             'bathroom' => '?',
             'wall' => '?',
-            'land_type' => '?',
             'shop_size' => '?',
+            'land_type' => '?',
             'files' => '?',
 
 
@@ -91,7 +91,7 @@ $queryBuilder
     ->setParameter(28, $_POST['land_type'] ?? 'none')
     ->setParameter(29, $_POST['wall'] ?? 'none');
 
-    if (!empty($_FILES['files'])) {
+    if (!empty($_FILES['files']['name'][0])) {
         $files = $_FILES['files'];
         $fileCount = count($files['name']);
         $destinationDir = 'properties/' . 4 . '/';
@@ -115,8 +115,9 @@ $queryBuilder
         }
     $queryBuilder->setParameter(30, json_encode($uploadedFiles));
 } else {
-    $queryBuilder->setParameter(30, null);
+    $queryBuilder->setParameter(30, 'none');
 }
+sendSms($_POST['phone_number'], 'ملک شما در سیستم ثبت شد', ' ');
 $queryBuilder->execute();
 $_SESSION['success'] = 'ملک با موفقیت ساخته شد';
 header('Location: /properties');
