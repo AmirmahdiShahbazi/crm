@@ -2,7 +2,6 @@
 
 // Start session
 
-?>
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
 
