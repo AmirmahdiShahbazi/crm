@@ -1654,6 +1654,7 @@
 
 // Function to add a reminder
 function addReminder(title, type, start, end) {
+  
   $.ajax({
     type: 'POST',
     url: 'reminder/addReminder.php', // Update the path to your backend script
